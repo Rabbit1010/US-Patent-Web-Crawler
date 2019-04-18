@@ -67,15 +67,16 @@ Command line option can be simplify to one letter.
 
 In command line:
 ```bash
-$ python main.py --many many --input ./my_URL.txt --output ./output/my_result.csv
+$ python main.py --many many --input ./my_URL.txt --output ./output/my_result
 ```
 can also be used by:
 ```bash
-$ python main.py -m many -i ./my_URL.txt -o ./output/my_result.csv
+$ python main.py -m many -i ./my_URL.txt -o ./output/my_result
 ```
 
 ## CSV file format
 Here a list for tag name used in .csv file:
+
 |      Tag Name       |                   Description                   |                           Example                            |
 | :-----------------: | :---------------------------------------------: | :----------------------------------------------------------: |
 |         ID          |           Patent number (9~11 digits)           |                           5479556                            |
