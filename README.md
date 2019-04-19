@@ -54,12 +54,12 @@ You can specify output file path and name.
 
 In command line:
 ```bash
-$ python main.py --many [MODE] --input [INPUT_FILE_PATH] --output [OUTPUT_FILE_PATH]
+$ python main.py --mode [MODE] --input [INPUT_FILE_PATH] --output [OUTPUT_FILE_PATH]
 ```
 
 For example
 ```bash
-$ python main.py --many many --input ./my_URL.txt --output ./output/my_result.csv
+$ python main.py --mode many --input ./my_URL.txt --output ./output/my_result.csv
 ```
 
 ## Simplify command line options
@@ -67,7 +67,7 @@ Command line option can be simplify to one letter.
 
 In command line:
 ```bash
-$ python main.py --many many --input ./my_URL.txt --output ./output/my_result
+$ python main.py --mode many --input ./my_URL.txt --output ./output/my_result
 ```
 can also be used by:
 ```bash
