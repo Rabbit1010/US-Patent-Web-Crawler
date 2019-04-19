@@ -337,8 +337,8 @@ def main():
         print("[INFO] Read input URL : {}".format(URL_in))
 
     # Testing
-    args['mode'] = 'single'
-    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=RE43897&OS=RE43897&RS=RE43897'
+#    args['mode'] = 'single'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=RE43897&OS=RE43897&RS=RE43897'
 
     # Single mode
     if args['mode'] == 'single':
