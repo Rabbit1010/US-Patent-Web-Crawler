@@ -227,13 +227,17 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     if simple==False:
         # Find the link to all referenced by
         reference_link_index = 0
+        referenced_by_link = 'NONE'
         for index, link in enumerate(links):
             if Beautify_String(link.text) == '[Referenced By]':
                 referenced_by_link = 'http://patft.uspto.gov/' + link['href']
                 reference_link_index = index
 
         # Go into referenced by link and get all link to referenced by
-        _, patent_referenced_by_links = Get_Patent_Info_by_First_Page(first_url=referenced_by_link)
+        if referenced_by_link != 'NONE':
+            _, patent_referenced_by_links = Get_Patent_Info_by_First_Page(first_url=referenced_by_link)
+        else:
+            patent_referenced_by_links = []
 
         # Visit each link and get its simple info
         patent_referenced_by = []
