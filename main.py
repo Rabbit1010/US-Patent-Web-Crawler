@@ -320,16 +320,19 @@ def main():
                     help="Path to input .txt file")
     ap.add_argument("-o", "--output", required=False, default='./output/patent_info',
                     help="Path to output .csv file")
-    ap.add_argument("-w", "--warnings", required=False, type=bool, default=True,
+    ap.add_argument("-w", "--warnings", required=False, default=True,
                     help="Show warning messages or not")
-    ap.add_argument("-d", "--debug", required=False, type=bool, default=False,
+    ap.add_argument("-d", "--debug", required=False, default=False,
                     help="Show debug message or not")
     args = vars(ap.parse_args())
 
     global DEBUG
-    DEBUG = args['debug']
+    if args['debug']=='True' or args['debug']=='true':
+        DEBUG = True
+
     global WARNINGS
-    WARNINGS = args['warnings']
+    if args['warnings']=='False' or args['warnings']=='false':
+        WARNINGS = False
 
     # Read input URL
     if not os.path.isfile(args['input']): # check if output file already exist
