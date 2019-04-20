@@ -162,8 +162,8 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_assignee_info = []
     for _s in patent_assignee_list:
         if '(' in _s and ')' in _s:
-            info = {'name': Beautify_String(_s.replace('('+_s[_s.find("(")+1:_s.find(")")]+')',''))}
-            info['location'] = Beautify_String(_s[_s.find("(")+1:_s.find(")")])
+            info = {'name': Beautify_String(_s.replace('('+_s[_s.rfind("(")+1:_s.rfind(")")]+')',''))}
+            info['location'] = Beautify_String(_s[_s.rfind("(")+1:_s.rfind(")")])
         else:
             info = {'name': Beautify_String(_s)}
         patent_assignee_info.append(info)
