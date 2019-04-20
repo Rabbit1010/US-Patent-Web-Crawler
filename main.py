@@ -347,8 +347,8 @@ def main():
     # Testing
 #    args['mode'] = 'single'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=RE43897&OS=RE43897&RS=RE43897'
-    args['mode'] = 'many'
-    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FSeoul+AND+APT%2F1%29+AND+ISD%2F19950101-%3E19951231%29&Refine=Refine+Search&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F19950101-%3E19951231'
+#    args['mode'] = 'many'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FSeoul+AND+APT%2F1%29+AND+ISD%2F19950101-%3E19951231%29&Refine=Refine+Search&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F19950101-%3E19951231'
 
     # Single mode
     if args['mode'] == 'single':
