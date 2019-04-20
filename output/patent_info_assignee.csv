@@ -1,5 +1,31 @@
-original,ID,10162459,assignee_name,"MOTOROLA SOLUTIONS, INC.",assignee_city,Chicago,assignee_country,IL
-reference,ID,4041394,assignee_name,River Range Developments Limited,assignee_city,Sault Ste. Marie,assignee_country,CA
-reference,ID,8719724,assignee_name,Honeywell International Inc.,assignee_city,Morristown,assignee_country,NJ
-reference,ID,9122332,assignee_name,Cellco Partnership,assignee_city,Basking Ridge,assignee_country,NJ
-reference,ID,9262008,assignee_name,"TIANJIN FUNAYUANCHUANG TECHNOLOGY CO., LTD.",assignee_city,Tianjin,assignee_country,CN
+original,ID,5479556,assignee_name,"Goldstar Co., Ltd.",assignee_city,Seoul,assignee_country,KR
+reference,ID,3974428,assignee_name,"Baldwin Electronics, Inc.",assignee_city,Little Rock,assignee_country,AR
+reference,ID,4353016,assignee_name,Minnesota Mining and Manufacturing Company,assignee_city,St. Paul,assignee_country,MN
+reference,ID,4455513,assignee_name,Imec Corporation,assignee_city,Boston,assignee_country,MA
+reference,ID,4591767,assignee_name,"Ricoh Company, Ltd.",assignee_city,Tokyo,assignee_country,JP
+reference,ID,4740736,assignee_name,"Advanced Micro Devices, Inc.",assignee_city,Sunnyvale,assignee_country,CA
+reference,ID,4804894,assignee_name,Sony Corporation,assignee_country,JP
+reference,ID,4868479,assignee_name,"The Charles Stark Draper Laboratory, Inc.",assignee_city,Cambridge,assignee_country,MA
+reference,ID,5113125,assignee_name,Westinghouse Electric Corp.,assignee_city,Pittsburgh,assignee_country,PA
+reference,ID,5371449,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP
+referenced_by,ID,9128885,assignee_name,The MITRE Corporation,assignee_city,McLean,assignee_country,VA
+referenced_by,ID,8410963,assignee_name,Infineon Technologies AG,assignee_city,Neubiberg,assignee_country,DE
+referenced_by,ID,6873129,assignee_name,Lexmark International Inc.,assignee_city,Lexington,assignee_country,KY
+referenced_by,ID,5729476,assignee_name,Robert Bosch GmbH,assignee_city,Stuttgart,assignee_country,DE
+referenced_by,ID,5666014,assignee_name,Mechanical Technology Inc.,assignee_city,Latham,assignee_country,NY
+original,ID,5479393,assignee_name,"Samsung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
+reference,ID,5319603,assignee_name,Kabushiki Kaisha Toshiba,assignee_city,Kawasaki,assignee_country,JP
+reference,ID,5365489,assignee_name,"Samsung Electronics Co., Ltd.",assignee_country,Kyunggui-do) N/A
+reference,ID,5381376,assignee_name,"SamSung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
+referenced_by,ID,7372768,assignee_name,"Micron Technology, Inc.",assignee_city,Boise,assignee_country,ID
+referenced_by,ID,5689472,assignee_name,Silicon Magic Corporation,assignee_city,Cupertino,assignee_country,CA
+original,ID,5479265,assignee_name,"Goldstar Co., Ltd.",assignee_city,Seoul,assignee_country,KR
+reference,ID,4316223,assignee_name,NONE
+reference,ID,5136394,assignee_name,Sharp Kabushiki Kaisha,assignee_city,Osaka,assignee_country,JP
+reference,ID,5162922,assignee_name,"Matsushita Electric Industrial Co., Ltd.",assignee_city,Osaka,assignee_country,JP
+reference,ID,5305105,assignee_name,"Gold Star Co., Ltd.",assignee_country,KR
+reference,ID,5339167,assignee_name,Pioneer Electronic Corporation,assignee_city,Tokyo,assignee_country,JP
+referenced_by,ID,RE43897,assignee_name,Sharp Kabushiki Kaisha,assignee_city,Osaka,assignee_country,JP
+referenced_by,ID,7295768,assignee_name,Sharp Kabushiki Kaisha,assignee_city,Osaka,assignee_country,JP
+referenced_by,ID,6728468,assignee_name,"Samsung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
+referenced_by,ID,5974218,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP

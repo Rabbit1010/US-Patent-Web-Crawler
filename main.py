@@ -8,6 +8,7 @@ Created on Thu Apr 11 14:12:17 2019
 import os.path
 import argparse
 import requests
+import pickle
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
@@ -346,6 +347,8 @@ def main():
     # Testing
 #    args['mode'] = 'single'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=RE43897&OS=RE43897&RS=RE43897'
+    args['mode'] = 'many'
+    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FSeoul+AND+APT%2F1%29+AND+ISD%2F19950101-%3E19951231%29&Refine=Refine+Search&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F19950101-%3E19951231'
 
     # Single mode
     if args['mode'] == 'single':
@@ -361,15 +364,36 @@ def main():
         print("[INFO] Getting the links to all patents")
         _, all_links = Get_Patent_Info_by_First_Page(first_url=URL_in)
 
+        # link information and initiailize checkpoint file
+        total_link = len(all_links)
+        current_link = 0
+
+        # Load checpoint
+        checkpoint_fname = './output/checkpoint.pkl'
+        if os.path.isfile(checkpoint_fname): # Check if checkpoint exist
+            print("[INFO] Checkpoint file exist, loading from checkpoint...")
+            with open(checkpoint_fname, 'rb') as f:  # Python 3: open(..., 'rb')
+                current_link, total_link_test = pickle.load(f)
+                if total_link != total_link_test:
+                    raise RuntimeError("[ERROR] The checkpoint file is incorrect, please delete it manually and restart it")
+
         # for each patent link
-        first = False
-        for link in tqdm(all_links):
+        for i in tqdm(range(current_link, total_link)):
+            link = all_links[i]
             patent_info = Get_Patent_Info_in_one_URL(url=link)
-            if first == False:
+            if i == 0:
                 Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='w')
-                first = True
             else:
                 Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='a')
+            current_link += 1
+
+            # save check point
+            with open(checkpoint_fname, 'wb') as f:
+                pickle.dump([current_link, total_link], f)
+
+            # finish all link
+            if current_link > total_link:
+                os.remove(checkpoint_fname) # delete checkpoint file
 
 if __name__ == '__main__':
     main()

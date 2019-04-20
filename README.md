@@ -62,6 +62,11 @@ For example
 $ python main.py --mode many --input ./my_URL.txt --output ./output/my_result.csv
 ```
 
+## Checkpoint
+At run time, the program would create a checkpoint file in `./output/checkpoint.pkl`. The program would automatically load the checkpoint and continue from the previously disrupted point. If you stop the program manually and want a fresh restart, you have to delete the checkpoint file manually.
+
+When loading from the checkpoint, it is recommend to check the .csv file and ensure that the information of the last patent is correct and complete.
+
 ## Simplify command line options
 Command line option can be simplify to one letter.
 
