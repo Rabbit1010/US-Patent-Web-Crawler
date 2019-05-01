@@ -131,10 +131,22 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     if patent_assignee=='NONE' and WARNINGS==True:
         print("[WARNING] Cannot parse assignee or there is no assignee information, ID: {}".format(patent_ID))
 
-    # Parse out each inventor (string split using ';')
+    # Parse out each inventor
     patent_inventors_list = []
-    for _inventor in patent_inventors.split(';'):
-        patent_inventors_list.append(Beautify_String(_inventor))
+    # locate ',' that is outside parenthesis
+    comma_loc = [-1,]
+    flag = False
+    for index, char in enumerate(patent_inventors):
+        if flag==False and char==',':
+            comma_loc.append(index)
+        elif char=='(':
+            flag = True
+        elif char==')':
+            flag = False
+    comma_loc.append(len(patent_inventors))
+    # string split to parse out each inventor using comma's location
+    for loc in range(len(comma_loc)-1):
+        patent_inventors_list.append(Beautify_String(patent_inventors[comma_loc[loc]+1:comma_loc[loc+1]]))
 
     # Get inventor info from string
     patent_inventors_info = []
@@ -181,7 +193,7 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_US_Class = 'NONE'
     patent_CPC_Class = 'NONE'
     patent_International_Class = 'NONE'
-    for i in range(4,8):
+    for i in range(4,9):
         try:
             if Beautify_String(tables[i].findAll('td')[0].text) == 'Current U.S. Class:':
                 patent_US_Class = Beautify_String(tables[i].findAll('td')[1].text)
@@ -213,7 +225,12 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     # Parse out each US Class (string split using ';')
     patent_US_Class_list = []
     for _s in patent_US_Class.split(';'):
-        patent_US_Class_list.append(Beautify_String(_s))
+        if len(_s) <= 6:
+            patent_US_Class_list.append(Beautify_String(_s))
+        elif _s[6] == '.':
+            patent_US_Class_list.append(Beautify_String(_s[:6]))
+        else:
+            patent_US_Class_list.append(Beautify_String(_s[:7])) # only need the first 7 digits
 
     # Parse out each CPC Class (string split using ';')
     patent_CPC_Class_list = []
@@ -224,6 +241,11 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_International_Class_list = []
     for _s in patent_International_Class.split(';'):
         patent_International_Class_list.append(Beautify_String(_s)[:4]) # only need the first 4 digits
+
+    # Delete duplicated class number, so that it only appears once
+    patent_US_Class_list = list(set(patent_US_Class_list))
+    patent_CPC_Class_list = list(set(patent_CPC_Class_list))
+    patent_International_Class_list = list(set(patent_International_Class_list))
 
     if simple==False:
         # Find the link to all referenced by
@@ -346,7 +368,7 @@ def main():
 
     # Testing
 #    args['mode'] = 'single'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=RE43897&OS=RE43897&RS=RE43897'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PTXT&p=1&S1=8368628.PN.&OS=pn/8368628&RS=PN/8368628'
 #    args['mode'] = 'many'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FSeoul+AND+APT%2F1%29+AND+ISD%2F19950101-%3E19951231%29&Refine=Refine+Search&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F19950101-%3E19951231'
 

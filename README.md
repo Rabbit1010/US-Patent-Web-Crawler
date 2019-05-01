@@ -82,22 +82,24 @@ $ python main.py -m many -i ./my_URL.txt -o ./output/my_result
 ## CSV file format
 Here a list for tag name used in .csv file:
 
-|      Tag Name       |                   Description                   |                           Example                            |
-| :-----------------: | :---------------------------------------------: | :----------------------------------------------------------: |
-|         ID          |           Patent number (9~11 digits)           |                           5479556                            |
-|        title        |                  Patent title                   | Rotation control apparatus employing a comb filter and phase error detector |
-|        date         |             Patent date (YYYY/M/D)              |                          1995/12/26                          |
-|    inventor_name    |                Name of inventor                 |                              Oh                              |
-|    inventor_city    |                City of inventor                 |                            Seoul                             |
-|  inventor_country   |                Country inventor                 |                              KR                              |
-|    assignee_name    |                Name of assignee                 |                      Goldstar Co., Ltd.                      |
-|    assignee_city    |                City of assignee                 |                            Seoul                             |
-|  assignee_country   |               Country of assignee               |                              KR                              |
-|      US_class       |                 US class number                 |                           388/805                            |
-|      CPC_class      |      First four digits of CPC class number      |                             H02P                             |
-| international_class | First four digits of international class number |                             H02P                             |
-|      reference      |           This is a reference patent            |                                                              |
-|    referenced_by    |       This is a patent that referenced by       |                                                              |
+|      Tag Name       |                 Description                  |                           Example                            |
+| :-----------------: | :------------------------------------------: | :----------------------------------------------------------: |
+|         ID          |         Patent number (9~11 digits)          |                           5479556                            |
+|        title        |                 Patent title                 | Rotation control apparatus employing a comb filter and phase error detector |
+|        date         |            Patent date (YYYY/M/D)            |                          1995/12/26                          |
+|    inventor_name    |               Name of inventor               |                              Oh                              |
+|    inventor_city    |               City of inventor               |                            Seoul                             |
+|  inventor_country   |               Country inventor               |                              KR                              |
+|    assignee_name    |               Name of assignee               |                      Goldstar Co., Ltd.                      |
+|    assignee_city    |               City of assignee               |                            Seoul                             |
+|  assignee_country   |             Country of assignee              |                              KR                              |
+|      US_class       |      First 3 digits of US class number       |                           388/805                            |
+|      CPC_class      |      First 4 digits of CPC class number      |                             H02P                             |
+| international_class | First 4 digits of international class number |                             H02P                             |
+|      reference      |          This is a reference patent          |                                                              |
+|    referenced_by    |     This is a patent that referenced by      |                                                              |
+
+Duplicate appearance of US class, CPC class, international class would only be shown once in the csv file.
 
 ## Warnings
 * Remember to close output .csv file before running the programm, or it can not access the output file.
