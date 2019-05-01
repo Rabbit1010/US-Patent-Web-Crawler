@@ -225,12 +225,13 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     # Parse out each US Class (string split using ';')
     patent_US_Class_list = []
     for _s in patent_US_Class.split(';'):
-        if len(_s) <= 6:
-            patent_US_Class_list.append(Beautify_String(_s))
-        elif _s[6] == '.':
-            patent_US_Class_list.append(Beautify_String(_s[:6]))
-        else:
-            patent_US_Class_list.append(Beautify_String(_s[:7])) # only need the first 7 digits
+        patent_US_Class_list.append(Beautify_String(_s[:3])) # only need the first 3 digits
+#        if len(_s) <= 6:
+#            patent_US_Class_list.append(Beautify_String(_s))
+#        elif _s[6] == '.':
+#            patent_US_Class_list.append(Beautify_String(_s[:6]))
+#        else:
+#            patent_US_Class_list.append(Beautify_String(_s[:7])) # only need the first 7 digits
 
     # Parse out each CPC Class (string split using ';')
     patent_CPC_Class_list = []
