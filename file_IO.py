@@ -26,10 +26,12 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
 #    with open(file_name, file_open_mode, newline='') as csv_file:
 
         p = patent_info
+        original_id = p['ID']
 
         # Title + Date + Inventors
         out_row_list = []
         w = csv.writer(file_title)
+        out_row_list.extend([original_id])
         out_row_list.extend(['original'])
         out_row_list.extend(['ID', p['ID']])
         out_row_list.extend(['title', p['title']])
@@ -48,6 +50,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         # Assignee
         out_row_list = []
         w = csv.writer(file_ass)
+        out_row_list.extend([original_id])
         out_row_list.extend(['original'])
         out_row_list.extend(['ID', p['ID']])
         for _assignee in p['assignee']:
@@ -63,6 +66,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         # US Class
         out_row_list = []
         w = csv.writer(file_US)
+        out_row_list.extend([original_id])
         out_row_list.extend(['original'])
         out_row_list.extend(['ID', p['ID']])
         for _US in p['US']:
@@ -73,6 +77,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         # CPC Class
         out_row_list = []
         w = csv.writer(file_CPC)
+        out_row_list.extend([original_id])
         out_row_list.extend(['original'])
         out_row_list.extend(['ID', p['ID']])
         for _CPC in p['CPC']:
@@ -83,6 +88,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         # CPC Class
         out_row_list = []
         w = csv.writer(file_International)
+        out_row_list.extend([original_id])
         out_row_list.extend(['original'])
         for _international in p['international']:
             out_row_list.extend(['international_class', _international])
@@ -93,6 +99,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         for _ref in patent_info['reference']:
             p = _ref
             out_row_list = []
+            out_row_list.extend([original_id])
             out_row_list.extend(['reference'])
             out_row_list.extend(['ID', p['ID']])
             out_row_list.extend(['title', p['title']])
@@ -113,6 +120,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # Assignee
             out_row_list = []
             w = csv.writer(file_ass)
+            out_row_list.extend([original_id])
             out_row_list.extend(['reference'])
             out_row_list.extend(['ID', p['ID']])
             for _assignee in p['assignee']:
@@ -128,6 +136,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # US Class
             out_row_list = []
             w = csv.writer(file_US)
+            out_row_list.extend([original_id])
             out_row_list.extend(['reference'])
             out_row_list.extend(['ID', p['ID']])
             for _US in p['US']:
@@ -138,6 +147,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # CPC Class
             out_row_list = []
             w = csv.writer(file_CPC)
+            out_row_list.extend([original_id])
             out_row_list.extend(['reference'])
             out_row_list.extend(['ID', p['ID']])
             for _CPC in p['CPC']:
@@ -145,9 +155,10 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # Write row
             w.writerow(out_row_list)
 
-            # CPC Class
+            # International Class
             out_row_list = []
             w = csv.writer(file_International)
+            out_row_list.extend([original_id])
             out_row_list.extend(['reference'])
             for _international in p['international']:
                 out_row_list.extend(['international_class', _international])
@@ -158,6 +169,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         for _ref in patent_info['referenced_by']:
             p = _ref
             out_row_list = []
+            out_row_list.extend([original_id])
             out_row_list.extend(['referenced_by'])
             out_row_list.extend(['ID', p['ID']])
             out_row_list.extend(['title', p['title']])
@@ -178,6 +190,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # Assignee
             out_row_list = []
             w = csv.writer(file_ass)
+            out_row_list.extend([original_id])
             out_row_list.extend(['referenced_by'])
             out_row_list.extend(['ID', p['ID']])
             for _assignee in p['assignee']:
@@ -193,6 +206,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # US Class
             out_row_list = []
             w = csv.writer(file_US)
+            out_row_list.extend([original_id])
             out_row_list.extend(['referenced_by'])
             out_row_list.extend(['ID', p['ID']])
             for _US in p['US']:
@@ -203,6 +217,7 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # CPC Class
             out_row_list = []
             w = csv.writer(file_CPC)
+            out_row_list.extend([original_id])
             out_row_list.extend(['referenced_by'])
             out_row_list.extend(['ID', p['ID']])
             for _CPC in p['CPC']:
@@ -210,9 +225,10 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
             # Write row
             w.writerow(out_row_list)
 
-            # CPC Class
+            # International Class
             out_row_list = []
             w = csv.writer(file_International)
+            out_row_list.extend([original_id])
             out_row_list.extend(['referenced_by'])
             for _international in p['international']:
                 out_row_list.extend(['international_class', _international])

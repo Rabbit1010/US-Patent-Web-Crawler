@@ -1,19 +1,20 @@
-original,ID,8368628,assignee_name,"Iris Tempest, L.L.C.",assignee_city,Dover,assignee_country,DE
-reference,ID,5803579,assignee_name,Gentex Corporation,assignee_city,Zeeland,assignee_country,MI
-reference,ID,6611249,assignee_name,"Silicon Graphics, Inc.",assignee_city,Mountain View,assignee_country,CA
-reference,ID,6618103,assignee_name,"Minolta Co., Ltd.",assignee_city,Osaka,assignee_country,JP
-reference,ID,6621482,assignee_name,Koninklijke Philips Electronics N.V.,assignee_city,Eindhoven,assignee_country,NL
-reference,ID,6839048,assignee_name,"Samsung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
-reference,ID,6888529,assignee_name,Koninklijke Philips Electronics N.V.,assignee_city,Eindhoven,assignee_country,NL
-reference,ID,7002539,assignee_name,"Olympus Optical Co., Ltd.",assignee_city,Tokyo,assignee_country,JP
-reference,ID,7009343,assignee_name,NONE
-reference,ID,7102648,assignee_name,RAH Color Technologies LLC,assignee_city,Rochester,assignee_country,NY
-reference,ID,7185995,assignee_name,Sony Corporation,assignee_city,Tokyo,assignee_country,JP
-reference,ID,7208713,assignee_name,Advanced Display Inc.,assignee_city,Kumamoto,assignee_country,JP
-reference,ID,7268757,assignee_name,Genoa Color Technologies Ltd,assignee_city,Herzliya Pituach,assignee_country,IL
-reference,ID,7339332,assignee_name,"Honeywell International, Inc.",assignee_city,Morristown,assignee_country,NJ
-reference,ID,7365729,assignee_name,"LG.Philips LCD Co., Ltd.",assignee_city,Seoul,assignee_country,KR
-reference,ID,7456805,assignee_name,3M Innovative Properties Company,assignee_city,St. Paul,assignee_country,MN
-reference,ID,7652654,assignee_name,Sony Corporation,assignee_city,Tokyo,assignee_country,JP
-reference,ID,7990352,assignee_name,Money Park Investments Ltd.,assignee_city,Hong Kong,assignee_country,HK
-reference,ID,8188957,assignee_name,Money Park Investments Ltd.,assignee_city,Hong Kong,assignee_country,HK
+9964563,original,ID,9964563,assignee_name,"Flextronics AP, LLC",assignee_city,Broomfield,assignee_country,CO
+9964563,reference,ID,5153385,assignee_name,"Motorola, Inc.",assignee_city,Schaumburg,assignee_country,IL
+9964563,reference,ID,5969262,assignee_name,Denso Corporation,assignee_city,Kariya,assignee_country,JP
+9964563,reference,ID,6078387,assignee_name,"Dage Precision Industries, Ltd.",assignee_city,Buckinghamshire,assignee_country,GB
+9964563,reference,ID,6178823,assignee_name,"Dage Precision Industries, Ltd.",assignee_country,GB
+9964563,reference,ID,6237422,assignee_name,Dage Precision Industries Ltd.,assignee_country,GB
+9964563,reference,ID,6301971,assignee_name,"Dage Precision Industries, Inc.",assignee_city,Buckinghamshire,assignee_country,GB
+9964563,reference,ID,6341530,assignee_name,"Dage Precision Industries, Ltd.",assignee_city,Buckinghamshire,assignee_country,GB
+9964563,reference,ID,6395568,assignee_name,"Advanced Micro Devices, Inc.",assignee_city,Sunnyvale,assignee_country,CA
+9964563,reference,ID,6548881,assignee_name,"Advanced Micro Devices, Inc.",assignee_city,Sunnyvale,assignee_country,CA
+9964563,reference,ID,6681640,assignee_name,Nokia Corporation,assignee_city,Espoo,assignee_country,FI
+9964563,reference,ID,6812578,assignee_name,"Samsung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
+9964563,reference,ID,7013564,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP
+9964563,reference,ID,7319043,assignee_name,Advanced Chip Engineering Technology Inc.,assignee_city,Hsinchu County,assignee_country,TW
+9964563,reference,ID,7444012,assignee_name,"Freescale Semiconductor, Inc.",assignee_city,Austin,assignee_country,TX
+9964563,reference,ID,7446546,assignee_name,Advanced Chip Engineering Technology Inc.,assignee_city,Hsinchu County,assignee_country,TW
+9964563,reference,ID,7543507,assignee_name,"Shenzhen Futaihong Precision Industry Co., Ltd. (ShenZhen, Guangdong Province, CN) FIH (Hong Kong) Limited",assignee_city,Kowloon,assignee_country,HK
+9964563,reference,ID,8096837,assignee_name,"Flextronics AP, LLC",assignee_city,Broomfield,assignee_country,CO
+9964563,reference,ID,8100021,assignee_name,Nordson Corporation,assignee_city,Westlake,assignee_country,OH
+9964563,reference,ID,8534136,assignee_name,"Flextronics AP, LLC.",assignee_city,Broomfield,assignee_country,CO
