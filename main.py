@@ -163,15 +163,15 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
             if len(_info['location'].split(',')) <= 1:
                 _info['country'] = Beautify_String(_info['location'].split(',')[0])
             else:
-                _info['city'] = Beautify_String(_info['location'].split(',')[0])
-                _info['country'] = Beautify_String(_info['location'].split(',')[1])
+                _info['city'] = Beautify_String(_info['location'].split(',')[-2].split(' ')[-1])
+                _info['country'] = Beautify_String(_info['location'].split(',')[-1])
 
     # Parse out each assignee (string split using ';')
     patent_assignee_list = []
     for _assignee in patent_assignee.split(';'):
         patent_assignee_list.append(Beautify_String(_assignee))
 
-    # Get inventor info from string
+    # Get assignee info from string
     patent_assignee_info = []
     for _s in patent_assignee_list:
         if '(' in _s and ')' in _s:
@@ -225,13 +225,7 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     # Parse out each US Class (string split using ';')
     patent_US_Class_list = []
     for _s in patent_US_Class.split(';'):
-        patent_US_Class_list.append(Beautify_String(_s[:3])) # only need the first 3 digits
-#        if len(_s) <= 6:
-#            patent_US_Class_list.append(Beautify_String(_s))
-#        elif _s[6] == '.':
-#            patent_US_Class_list.append(Beautify_String(_s[:6]))
-#        else:
-#            patent_US_Class_list.append(Beautify_String(_s[:7])) # only need the first 7 digits
+        patent_US_Class_list.append(Beautify_String(_s)[:3].split('/')[0]) # only need the first 3 digits
 
     # Parse out each CPC Class (string split using ';')
     patent_CPC_Class_list = []
@@ -247,6 +241,24 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_US_Class_list = list(set(patent_US_Class_list))
     patent_CPC_Class_list = list(set(patent_CPC_Class_list))
     patent_International_Class_list = list(set(patent_International_Class_list))
+
+    # Hand-code exceptions (Patents that are hard to parse)
+    if patent_ID == "4825599":
+        patent_inventors_info = []
+        info = {'name': 'Swann, Jr.; Jack T.'}
+        info['city'] = 'Huntsville'
+        info['country'] = 'AL'
+        patent_inventors_info.append(info)
+    elif patent_ID == "9964563":
+        patent_inventors_info = []
+        info = {'name': 'Gunasing; David Durai Pandian Sam'}
+        info['city'] = 'Penang'
+        info['country'] = 'MY'
+        patent_inventors_info.append(info)
+        info = {'name': 'Min; Teh Wee'}
+        info['city'] = 'Penang'
+        info['country'] = 'MY'
+        patent_inventors_info.append(info)
 
     if simple==False:
         # Find the link to all referenced by
@@ -368,22 +380,22 @@ def main():
         print("[INFO] Read input URL : {}".format(URL_in))
 
     # Testing
-#    args['mode'] = 'single'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&f=G&l=50&d=PTXT&p=1&S1=8368628.PN.&OS=pn/8368628&RS=PN/8368628'
+    args['mode'] = 'single'
+    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=18&f=G&l=50&d=PTXT&p=1&S1=4825599&OS=4825599&RS=4825599'
 #    args['mode'] = 'many'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FSeoul+AND+APT%2F1%29+AND+ISD%2F19950101-%3E19951231%29&Refine=Refine+Search&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F19950101-%3E19951231'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
 
     # Single mode
     if args['mode'] == 'single':
-        if os.path.isfile(args['output']): # check if output file already exist
-            print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output']))
+        if os.path.isfile(args['output'] + "_title_inventor.csv"): # check if output file already exist
+            print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output'] + "_title_inventor.csv"))
         patent_info = Get_Patent_Info_in_one_URL(url=URL_in)
         Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='w')
 
     # Many mode
     if args['mode'] == 'many':
-        if os.path.isfile(args['output']): # check if output file already exist
-            print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output']))
+        if os.path.isfile(args['output'] + "_title_inventor.csv"): # check if output file already exist
+            print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output'] + "_title_inventor.csv"))
         print("[INFO] Getting the links to all patents")
         _, all_links = Get_Patent_Info_by_First_Page(first_url=URL_in)
 
