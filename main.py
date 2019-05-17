@@ -55,7 +55,11 @@ def Get_Patent_Info_by_First_Page(first_url):
     return query_result, query_links
 
 def Beautify_String(string):
+    if string == '':
+        return string
     out = string.replace('\n',' ')
+    if out[0] == ',':
+        out = out[1:]
     out = out.rstrip() # remove leading whit spaces
     out = out.lstrip() # remove trailing white spaces
     out = ' '.join(out.split()) # remove multiple white spaces
@@ -133,61 +137,86 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
 
     # Parse out each inventor
     patent_inventors_list = []
-    # locate ',' that is outside parenthesis
-    comma_loc = [-1,]
-    flag = False
-    for index, char in enumerate(patent_inventors):
-        if flag==False and char==',':
-            comma_loc.append(index)
-        elif char=='(':
-            flag = True
-        elif char==')':
-            flag = False
-    comma_loc.append(len(patent_inventors))
-    # string split to parse out each inventor using comma's location
-    for loc in range(len(comma_loc)-1):
-        patent_inventors_list.append(Beautify_String(patent_inventors[comma_loc[loc]+1:comma_loc[loc+1]]))
+    # split string using ')'
+    for _inventor in patent_inventors.split(')'):
+        if _inventor != '':
+            patent_inventors_list.append(Beautify_String(_inventor))
+#    # locate ',' that is outside parenthesis
+#    comma_loc = [-1,]
+#    flag = False
+#    for index, char in enumerate(patent_inventors):
+#        if flag==False and char==',':
+#            comma_loc.append(index)
+#        elif char=='(':
+#            flag = True
+#        elif char==')':
+#            flag = False
+#    comma_loc.append(len(patent_inventors))
+#    # string split to parse out each inventor using comma's location
+#    for loc in range(len(comma_loc)-1):
+#        patent_inventors_list.append(Beautify_String(patent_inventors[comma_loc[loc]+1:comma_loc[loc+1]]))
 
-    # Get inventor info from string
+    # Get inventor locaion from string
     patent_inventors_info = []
-    for _s in patent_inventors_list:
-        if '(' in _s and ')' in _s:
-            info = {'name': Beautify_String(_s.replace('('+_s[_s.find("(")+1:_s.find(")")]+')',''))}
-            info['location'] = Beautify_String(_s[_s.find("(")+1:_s.find(")")])
-        else:
-            info = {'name': Beautify_String(_s)}
+    for _s in patent_inventors_list: # for each inventor string
+        info = {'country': Beautify_String(_s.split(',')[-1])}
+        info['city'] = Beautify_String(_s.replace(','+(_s.split(',')[-1]), '').split('(')[-1])
+        info['name'] = Beautify_String(_s.split('(')[0])
         patent_inventors_info.append(info)
 
-    for _info in patent_inventors_info:
-        if 'location' in _info: # the inventor has location information
-            if len(_info['location'].split(',')) <= 1:
-                _info['country'] = Beautify_String(_info['location'].split(',')[0])
-            else:
-                _info['city'] = Beautify_String(_info['location'].split(',')[-2].split(' ')[-1])
-                _info['country'] = Beautify_String(_info['location'].split(',')[-1])
+
+#    for _s in patent_inventors_list:
+#        if '(' in _s and ')' in _s:
+#            info = {'name': Beautify_String(_s.replace('('+_s[_s.find("(")+1:_s.find(")")]+')',''))}
+#            info['location'] = Beautify_String(_s[_s.find("(")+1:_s.find(")")])
+#        else:
+#            info = {'name': Beautify_String(_s)}
+#        patent_inventors_info.append(info)
+
+    # Get inventor city and country for location string
+#    for _info in patent_inventors_info:
+#        if 'location' in _info: # the inventor has location information
+#            if len(_info['location'].split(',')) <= 1:
+#                _info['country'] = Beautify_String(_info['location'].split(',')[0])
+#            else:
+#                _info['city'] = Beautify_String(_info['location'].split(',')[-2].split(' ')[-1])
+#                _info['country'] = Beautify_String(_info['location'].split(',')[-1])
 
     # Parse out each assignee (string split using ';')
     patent_assignee_list = []
-    for _assignee in patent_assignee.split(';'):
-        patent_assignee_list.append(Beautify_String(_assignee))
+#    for _assignee in patent_assignee.split(';'):
+#        patent_assignee_list.append(Beautify_String(_assignee))
+    # split string using ')'
+    for _assignee in patent_assignee.split(')'):
+        if _assignee != '':
+            patent_assignee_list.append(Beautify_String(_assignee))
 
     # Get assignee info from string
     patent_assignee_info = []
-    for _s in patent_assignee_list:
-        if '(' in _s and ')' in _s:
-            info = {'name': Beautify_String(_s.replace('('+_s[_s.rfind("(")+1:_s.rfind(")")]+')',''))}
-            info['location'] = Beautify_String(_s[_s.rfind("(")+1:_s.rfind(")")])
-        else:
-            info = {'name': Beautify_String(_s)}
+    for _s in patent_assignee_list: # for each inventor string
+        info = {'country': Beautify_String(_s.split(',')[-1])}
+        info['city'] = Beautify_String(_s.replace(','+(_s.split(',')[-1]), '').split('(')[-1])
+        info['name'] = Beautify_String(_s.split('(')[0])
+        if info['name'] == 'N/A':
+            continue
         patent_assignee_info.append(info)
 
-    for _info in patent_assignee_info:
-        if 'location' in _info: # the inventor has location information
-            if len(_info['location'].split(',')) <= 1:
-                _info['country'] = Beautify_String(_info['location'].split(',')[0])
-            else:
-                _info['city'] = Beautify_String(_info['location'].split(',')[0])
-                _info['country'] = Beautify_String(_info['location'].split(',')[1])
+#    patent_assignee_info = []
+#    for _s in patent_assignee_list:
+#        if '(' in _s and ')' in _s:
+#            info = {'name': Beautify_String(_s.replace('('+_s[_s.rfind("(")+1:_s.rfind(")")]+')',''))}
+#            info['location'] = Beautify_String(_s[_s.rfind("(")+1:_s.rfind(")")])
+#        else:
+#            info = {'name': Beautify_String(_s)}
+#        patent_assignee_info.append(info)
+#
+#    for _info in patent_assignee_info:
+#        if 'location' in _info: # the inventor has location information
+#            if len(_info['location'].split(',')) <= 1:
+#                _info['country'] = Beautify_String(_info['location'].split(',')[0])
+#            else:
+#                _info['city'] = Beautify_String(_info['location'].split(',')[0])
+#                _info['country'] = Beautify_String(_info['location'].split(',')[1])
 
     # The 6st table is the table containing Class and its numbers
     patent_US_Class = 'NONE'
@@ -381,7 +410,7 @@ def main():
 
     # Testing
 #    args['mode'] = 'single'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=18&f=G&l=50&d=PTXT&p=1&S1=4825599&OS=4825599&RS=4825599'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=71&p=2&f=G&l=50&d=PTXT&S1=5339404&OS=5339404&RS=5339404'
 #    args['mode'] = 'many'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
 

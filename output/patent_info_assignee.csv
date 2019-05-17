@@ -1,65 +1,84 @@
-9964563,original,ID,9964563,assignee_name,"Flextronics AP, LLC",assignee_city,Broomfield,assignee_country,CO
-9964563,reference,ID,5153385,assignee_name,"Motorola, Inc.",assignee_city,Schaumburg,assignee_country,IL
-9964563,reference,ID,5969262,assignee_name,Denso Corporation,assignee_city,Kariya,assignee_country,JP
-9964563,reference,ID,6078387,assignee_name,"Dage Precision Industries, Ltd.",assignee_city,Buckinghamshire,assignee_country,GB
-9964563,reference,ID,6178823,assignee_name,"Dage Precision Industries, Ltd.",assignee_country,GB
-9964563,reference,ID,6237422,assignee_name,Dage Precision Industries Ltd.,assignee_country,GB
-9964563,reference,ID,6301971,assignee_name,"Dage Precision Industries, Inc.",assignee_city,Buckinghamshire,assignee_country,GB
-9964563,reference,ID,6341530,assignee_name,"Dage Precision Industries, Ltd.",assignee_city,Buckinghamshire,assignee_country,GB
-9964563,reference,ID,6395568,assignee_name,"Advanced Micro Devices, Inc.",assignee_city,Sunnyvale,assignee_country,CA
-9964563,reference,ID,6548881,assignee_name,"Advanced Micro Devices, Inc.",assignee_city,Sunnyvale,assignee_country,CA
-9964563,reference,ID,6681640,assignee_name,Nokia Corporation,assignee_city,Espoo,assignee_country,FI
-9964563,reference,ID,6812578,assignee_name,"Samsung Electronics Co., Ltd.",assignee_city,Suwon,assignee_country,KR
-9964563,reference,ID,7013564,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP
-9964563,reference,ID,7319043,assignee_name,Advanced Chip Engineering Technology Inc.,assignee_city,Hsinchu County,assignee_country,TW
-9964563,reference,ID,7444012,assignee_name,"Freescale Semiconductor, Inc.",assignee_city,Austin,assignee_country,TX
-9964563,reference,ID,7446546,assignee_name,Advanced Chip Engineering Technology Inc.,assignee_city,Hsinchu County,assignee_country,TW
-9964563,reference,ID,7543507,assignee_name,"Shenzhen Futaihong Precision Industry Co., Ltd. (ShenZhen, Guangdong Province, CN) FIH (Hong Kong) Limited",assignee_city,Kowloon,assignee_country,HK
-9964563,reference,ID,8096837,assignee_name,"Flextronics AP, LLC",assignee_city,Broomfield,assignee_country,CO
-9964563,reference,ID,8100021,assignee_name,Nordson Corporation,assignee_city,Westlake,assignee_country,OH
-9964563,reference,ID,8534136,assignee_name,"Flextronics AP, LLC.",assignee_city,Broomfield,assignee_country,CO
-9212245,original,ID,9212245,assignee_name,EMPIRE TECHNOLOGY DEVELOPMENT LLC,assignee_city,Wilmington,assignee_country,DE
-9212245,reference,ID,4156777,assignee_name,"Tokyo Tanabe Company, Limited",assignee_country,JP
-9212245,reference,ID,4323487,assignee_name,Henkel Corporation,assignee_city,Minneapolis,assignee_country,MN
-9212245,reference,ID,4476593,assignee_name,Minnesota Mining and Manufacturing Company,assignee_city,St. Paul,assignee_country,MN
-9212245,reference,ID,4587331,assignee_name,American Cyanamid Company,assignee_city,Stamford,assignee_country,CT
-9212245,reference,ID,4601757,assignee_name,"DeSoto, Inc.",assignee_city,Des Plaines,assignee_country,IL
-9212245,reference,ID,4771105,assignee_name,Sekisui Kaseihin Kogyo Kabushiki Kaisha,assignee_city,Nara,assignee_country,JP
-9212245,reference,ID,4822848,assignee_name,Agency of Industrial Science & Technology Ministry of International Trade & Industry,assignee_city,Tokyo,assignee_country,JP
-9212245,reference,ID,4865640,assignee_name,NONE
-9212245,reference,ID,4996059,assignee_name,L'Oreal,assignee_city,Paris,assignee_country,FR
-9212245,reference,ID,5002680,assignee_name,The Procter & Gamble Company,assignee_city,Cincinnati,assignee_country,OH
-9212245,reference,ID,5045617,assignee_name,ISP Investments Inc.,assignee_city,Wilmington,assignee_country,DE
-9212245,reference,ID,5232688,assignee_name,"Chesebrough-Pond's USA Co., Division of Conopco, Inc.",assignee_city,Greenwich,assignee_country,CT
-9212245,reference,ID,5294435,assignee_name,"Chesebrough-Pond's USA Co. Division of Conopco, Inc.",assignee_city,Greenwich,assignee_country,CT
-9212245,reference,ID,5474768,assignee_name,NONE
-9212245,reference,ID,5609862,assignee_name,Calgon Corporation,assignee_city,Pittsburgh,assignee_country,PA
-9212245,reference,ID,5646100,assignee_name,Colgate-Palmolive Company,assignee_city,New York,assignee_country,NY
-9212245,reference,ID,5698052,assignee_name,"Roman Adhesives, Inc.",assignee_city,Calumet City,assignee_country,IL
-9212245,reference,ID,5965147,assignee_name,Mycone Dental Inc.,assignee_city,Cherry Hill,assignee_country,NJ
-9212245,reference,ID,5993857,assignee_name,Lancaster Group GmbH,assignee_city,Mainz,assignee_country,DE
-9212245,reference,ID,6133212,assignee_name,The Procter & Gamble Company,assignee_city,Cincinnati,assignee_country,OH
-9212245,reference,ID,6277892,assignee_name,"Schering-Plough Healthcare Products, Inc.",assignee_city,Memphis,assignee_country,TN
-9212245,reference,ID,6410668,assignee_name,NONE
-9212245,reference,ID,6488091,assignee_name,"Halliburton Energy Services, Inc.",assignee_city,Duncan,assignee_country,OK
-9212245,reference,ID,6552103,assignee_name,The Regents of the University of California,assignee_city,Oakland,assignee_country,CA
-9212245,reference,ID,6613378,assignee_name,The United States of America as represented by the Secretary of Agriculture,assignee_city,Washington,assignee_country,DC
-9212245,reference,ID,6664356,assignee_name,ISP Investments Inc.,assignee_city,Wilmington,assignee_country,DE
-9212245,reference,ID,6875426,assignee_name,L'Oreal,assignee_city,Paris,assignee_country,FR
-9212245,reference,ID,7422735,assignee_name,BASF Aktiengesellschaft,assignee_city,Ludwigshafen,assignee_country,DE
-9212245,reference,ID,7423090,assignee_name,"Absorbent Technologies, Inc.",assignee_city,Beaverton,assignee_country,OR
-9212245,reference,ID,7455848,assignee_name,Nalco Company,assignee_city,Naperville,assignee_country,IL
-9212245,reference,ID,7541414,assignee_name,L'Oreal S.A.,assignee_city,Paris,assignee_country,FR
-9212245,reference,ID,7560428,assignee_name,"Sumitomo Electric Industries, Ltd.",assignee_city,Osaka-shi,assignee_country,JP
-9212245,reference,ID,7597879,assignee_name,Bioderm Research,assignee_city,Scottsdale,assignee_country,AZ
-9212245,reference,ID,7601340,assignee_name,Kao Corporation,assignee_city,Tokyo,assignee_country,JP
-9212245,reference,ID,7671007,assignee_name,"Conopco, Inc.",assignee_city,Englewood Cliffs,assignee_country,NJ
-9212245,reference,ID,7754192,assignee_name,BASF Aktiengesellschaft,assignee_city,Ludwigshafen,assignee_country,DE
-9212245,reference,ID,7763240,assignee_name,"Living Proof, Inc.",assignee_city,Cambridge,assignee_country,MA
-9212245,reference,ID,7777073,assignee_name,Bioderm Research,assignee_city,Scottsdale,assignee_country,AZ
-9212245,reference,ID,7780954,assignee_name,"Conopco, Inc.",assignee_city,Englewood Cliffs,assignee_country,NJ
-9212245,reference,ID,7785575,assignee_name,"Living Proof, Inc.",assignee_city,Cambridge,assignee_country,MA
-9212245,reference,ID,7794839,assignee_name,The Procter & Gamble Company,assignee_city,Cincinnati,assignee_country,OH
-9212245,reference,ID,7875264,assignee_name,"Shiseido Company, Ltd.",assignee_city,Tokyo,assignee_country,JP
-9212245,reference,ID,8017553,assignee_name,"Absorbent Technologies, Inc.",assignee_city,Beaverton,assignee_country,OR
-9212245,reference,ID,8316580,assignee_name,NONE
+5339404,original,ID,5339404,assignee_name,International Business Machines Corporation,assignee_city,New York,assignee_country,NY
+5339404,reference,ID,3921149,assignee_name,Hasler AG,assignee_city,Bern,assignee_country,CH
+5339404,reference,ID,4363096,assignee_name,GTE Automatic Electric Labs Inc.,assignee_city,Northlake,assignee_country,IL
+5339404,reference,ID,4644498,assignee_name,General Electric Company,assignee_city,Schenectady,assignee_country,NY
+5339404,reference,ID,4667284,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP
+5339404,reference,ID,4868826,assignee_name,Triplex,assignee_city,Torrance,assignee_country,CA
+5339404,reference,ID,4882731,assignee_name,U.S. Philips Corporation,assignee_city,New York,assignee_country,NY
+5339404,reference,ID,4907232,assignee_name,"The Charles Stark Draper Laboratory, Inc.",assignee_city,Cambridge,assignee_country,MA
+5339404,reference,ID,4916695,assignee_name,Telefonaktiebolaget L M Ericsson,assignee_city,Stockholm,assignee_country,SE
+5339404,reference,ID,4965717,assignee_name,Tandem Computers Incorporated,assignee_city,Cupertino,assignee_country,CA
+5339404,reference,ID,5038276,assignee_name,NONE,assignee_city,NONE,assignee_country,NONE
+5339404,reference,ID,5117442,assignee_name,National Semiconductor Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,reference,ID,5193175,assignee_name,Tandem Computers Incorporated,assignee_city,Cupertino,assignee_country,CA
+5339404,reference,ID,5226152,assignee_name,"Motorola, Inc.",assignee_city,Schaumburg,assignee_country,IL
+5339404,referenced_by,ID,10210084,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10180887,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10149399,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10133686,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10120694,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,10120586,assignee_name,"BiTMICRO, LLC",assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10082966,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10078604,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,10055150,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,10042799,assignee_name,"BITMICRO, LLC",assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,10042792,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,10025736,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,10013373,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9996419,assignee_name,BitMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,9977077,assignee_name,Bitmicro LLC,assignee_city,Murrells Inlet,assignee_country,SC
+5339404,referenced_by,ID,9952991,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9934160,assignee_name,BiTMICRO LLC,assignee_city,Reston,assignee_country,VA
+5339404,referenced_by,ID,9934045,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9916213,assignee_name,"BITMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9875205,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9842024,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,9798688,assignee_name,"BiTMICRO Networks, Inc.",assignee_city,Fremont,assignee_country,CA
+5339404,referenced_by,ID,8976195,assignee_name,NVIDIA Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,8856590,assignee_name,"Compunetix, Inc.",assignee_city,Monroeville,assignee_country,PA
+5339404,referenced_by,ID,8564616,assignee_name,Nvidia Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,8542247,assignee_name,Nvidia Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,8384736,assignee_name,NVIDIA Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,8214625,assignee_name,NVIDIA Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,8205201,assignee_name,Thales,assignee_city,FR,assignee_country,Thales (FR
+5339404,referenced_by,ID,8200947,assignee_name,NVIDIA Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,7917675,assignee_name,"Rockwell Automation Technologies, Inc.",assignee_city,Mayfield Heights,assignee_country,OH
+5339404,referenced_by,ID,7908520,assignee_name,"A. Avizienis and Associates, Inc.",assignee_city,Santa Monica,assignee_country,CA
+5339404,referenced_by,ID,7890799,assignee_name,"Maxwell Technologies, Inc.",assignee_city,San Diego,assignee_country,CA
+5339404,referenced_by,ID,7613948,assignee_name,"Maxwell Technologies, Inc.",assignee_city,San Diego,assignee_country,CA
+5339404,referenced_by,ID,7467326,assignee_name,"Maxwell Technologies, Inc.",assignee_city,San Diego,assignee_country,CA
+5339404,referenced_by,ID,7434098,assignee_name,"Hewlett-Packard Development Company, L.P.",assignee_city,Houston,assignee_country,TX
+5339404,referenced_by,ID,7392426,assignee_name,Honeywell International Inc.,assignee_city,Morristown,assignee_country,NJ
+5339404,referenced_by,ID,7289889,assignee_name,General Motors Corporation,assignee_city,Detroit,assignee_country,MI
+5339404,referenced_by,ID,7260740,assignee_name,Siemens Aktiengesellshcaft,assignee_city,Munich,assignee_country,DE
+5339404,referenced_by,ID,7236005,assignee_name,Intel Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,7155704,assignee_name,"Sun Microsystems, Inc.",assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,7047440,assignee_name,NONE,assignee_city,NONE,assignee_country,NONE
+5339404,referenced_by,ID,6732300,assignee_name,NONE,assignee_city,NONE,assignee_country,NONE
+5339404,referenced_by,ID,6574744,assignee_name,Alcatel,assignee_city,Paris,assignee_country,FR
+5339404,referenced_by,ID,6550018,assignee_name,The University of Akron,assignee_city,Akron,assignee_country,OH
+5339404,referenced_by,ID,6542929,assignee_name,International Business Machines Corporation,assignee_city,Armonk,assignee_country,NY
+5339404,referenced_by,ID,6526432,assignee_name,International Business Machines Corporation,assignee_city,Armonk,assignee_country,NY
+5339404,referenced_by,ID,6490693,assignee_name,International Business Machines Corporation,assignee_city,Armonk,assignee_country,NY
+5339404,referenced_by,ID,6487678,assignee_name,International Business Machines Corporation,assignee_city,Armonk,assignee_country,NY
+5339404,referenced_by,ID,6327668,assignee_name,"Sun Microsystems, Inc.",assignee_city,Palo Alto,assignee_country,CA
+5339404,referenced_by,ID,6216236,assignee_name,"Tokyo, Japan",assignee_city,Tokyo,assignee_country,JP,assignee_name,"Hitachi Process Computer Engineering, Inc.",assignee_city,Hitachi Process Computer Engineering,assignee_country,Inc. (Ibaraki
+5339404,referenced_by,ID,6205565,assignee_name,Marathon Technologies Corporation,assignee_city,Boxboro,assignee_country,MA
+5339404,referenced_by,ID,6185646,assignee_name,International Business Machines Corporation,assignee_city,Armonk,assignee_country,NY
+5339404,referenced_by,ID,6038685,assignee_name,Marathon Technologies Corporation,assignee_city,Stow,assignee_country,MA
+5339404,referenced_by,ID,5956474,assignee_name,Marathon Technologies Corporation,assignee_city,Boxboro,assignee_country,MA
+5339404,referenced_by,ID,5903717,assignee_name,"General Dynamics Information Systems, Inc.",assignee_city,Bloomington,assignee_country,MN
+5339404,referenced_by,ID,5901281,assignee_name,"Hitachi, Ltd.",assignee_city,Tokyo,assignee_country,JP,assignee_name,"Hitachi Process Computer Engineering, Inc.",assignee_city,Ibaraki,assignee_country,JP
+5339404,referenced_by,ID,5896523,assignee_name,Marathon Technologies Corporation,assignee_city,Boxboro,assignee_country,MA
+5339404,referenced_by,ID,5812757,assignee_name,Mitsubishi Denki Kabushiki Kaisha,assignee_city,Tokyo,assignee_country,JP
+5339404,referenced_by,ID,5790397,assignee_name,Marathon Technologies Corporation,assignee_city,Boxboro,assignee_country,MA
+5339404,referenced_by,ID,5751726,assignee_name,"Hyundai Electronics Industries, Co. Ltd.",assignee_city,Kyoungki,assignee_country,KR
+5339404,referenced_by,ID,5719559,assignee_name,Limitorque Corporation,assignee_city,Lynchburg,assignee_country,VA
+5339404,referenced_by,ID,5680408,assignee_name,Intel Corporation,assignee_city,Santa Clara,assignee_country,CA
+5339404,referenced_by,ID,5666483,assignee_name,Honeywell Inc.,assignee_city,Minneapolis,assignee_country,MN
+5339404,referenced_by,ID,5615403,assignee_name,Marathon Technologies Corporation,assignee_city,Boxboro,assignee_country,MA
+5339404,referenced_by,ID,5600784,assignee_name,Marathon Technologies Corporation,assignee_city,Stow,assignee_country,MA
+5339404,referenced_by,ID,5577199,assignee_name,Mitsubishi Denki Kabushiki Kaisha,assignee_city,Tokyo,assignee_country,JP
+5339404,referenced_by,ID,5572662,assignee_name,Fujitsu Limited,assignee_city,Kawasaki,assignee_country,JP
+5339404,referenced_by,ID,5572620,assignee_name,Honeywell Inc.,assignee_city,Minneapolis,assignee_country,MN
+5339404,referenced_by,ID,5537655,assignee_name,The Boeing Company,assignee_city,Seattle,assignee_country,WA
