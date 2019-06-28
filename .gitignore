@@ -1,6 +1,6 @@
 *.pptx
 *.docx
-
+output/
 !output/.gitkeep
 
 # Byte-compiled / optimized / DLL files
