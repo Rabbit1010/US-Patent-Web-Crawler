@@ -6,6 +6,22 @@ Created on Fri Apr 19 02:36:29 2019
 """
 
 import csv
+import json
+
+
+def Read_json(json_path):
+    with open(json_path, 'r') as fp:
+        data = json.load(fp)
+
+    return data
+
+def Write_one_patent_to_json(patent_info, file_name):
+    if patent_info is None:
+        return
+
+    with open(file_name + '_{}.json'.format(patent_info['ID']), 'w') as fp:
+        json.dump(patent_info, fp)
+
 
 def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
     if patent_info is None:

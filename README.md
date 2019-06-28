@@ -67,6 +67,23 @@ At run time, the program would create a checkpoint file in `./output/checkpoint.
 
 When loading from the checkpoint, it is recommend to check the .csv file and ensure that the information of the last patent is correct and complete.
 
+## Automatic restart
+Since the program would be interrupted and forced to stop by bad internet connection, website not responding, or some random errors, an automatic restart program is used to restart the program from the checkpoint.
+
+Open `restart.py`
+```Python
+while True:
+    os.system("python main.py") # Modify your command line argument here
+    print("Restarting...")
+    time.sleep(1) # 1 sec to CTRL+C twice
+```
+Modify the command line arguments to suit your own need. Then execute by:
+```bash
+# python restart.py
+```
+
+If there is any interruption that cause the program to terminate, it automatic restarts. Note that even after all the patents are download, the program would not stop. Manually stop the program by quickly pressing CTRL+C twice (or many many times).
+
 ## Simplify command line options
 Command line option can be simplify to one letter.
 
@@ -79,8 +96,10 @@ can also be used by:
 $ python main.py -m many -i ./my_URL.txt -o ./output/my_result
 ```
 
-## CSV file format
-Here a list for tag name used in .csv file:
+## Output file format
+The program will store the output in a .csv and a .json file. The single CSV files (five of them)  store the data of all patents, while each JSON file stores a single patent information (including forward citing and backward citing). CSV file is useful to manually examine if there is any error in the crawled data. JSON is for the program to read the saved data later on for index calculation.
+
+Here a list for tag name used in .csv and .json file:
 
 |      Tag Name       |                 Description                  |                           Example                            |
 | :-----------------: | :------------------------------------------: | :----------------------------------------------------------: |

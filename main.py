@@ -12,7 +12,7 @@ import pickle
 from tqdm import tqdm
 from bs4 import BeautifulSoup
 
-from file_IO import Write_one_patent_to_csv
+from file_IO import Write_one_patent_to_csv, Write_one_patent_to_json
 
 WARNINGS = True
 DEBUG = False
@@ -411,8 +411,8 @@ def main():
     # Testing
 #    args['mode'] = 'single'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=71&p=2&f=G&l=50&d=PTXT&S1=5339404&OS=5339404&RS=5339404'
-#    args['mode'] = 'many'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
+    args['mode'] = 'many'
+    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
 
     # Single mode
     if args['mode'] == 'single':
@@ -420,6 +420,7 @@ def main():
             print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output'] + "_title_inventor.csv"))
         patent_info = Get_Patent_Info_in_one_URL(url=URL_in)
         Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='w')
+        Write_one_patent_to_json(patent_info, args['output'])
 
     # Many mode
     if args['mode'] == 'many':
@@ -447,8 +448,10 @@ def main():
             patent_info = Get_Patent_Info_in_one_URL(url=link)
             if i == 0:
                 Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='w')
+                Write_one_patent_to_json(patent_info, args['output'])
             else:
                 Write_one_patent_to_csv(patent_info, args['output'], file_open_mode='a')
+                Write_one_patent_to_json(patent_info, args['output'])
             current_link += 1
 
             # save check point
