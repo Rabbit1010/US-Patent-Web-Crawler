@@ -379,7 +379,7 @@ def Get_Query_Info_in_one_HTML(html_text):
 def main():
     # construct the argument parse and parse the arguments
     ap = argparse.ArgumentParser()
-    ap.add_argument("-m", "--mode", required=False, default='single',
+    ap.add_argument("-m", "--mode", required=False, default='many',
                     help="Mode, single or many")
     ap.add_argument("-i", "--input", required=False, default='./input_URL.txt',
                     help="Path to input .txt file")

@@ -1,5 +1,7 @@
 *.pptx
 *.docx
+TEMPORARY/
+index_result/
 output/
 !output/.gitkeep
 
