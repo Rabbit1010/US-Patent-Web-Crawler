@@ -19,7 +19,7 @@ def Write_one_patent_to_json(patent_info, file_name):
     if patent_info is None:
         return
 
-    with open(file_name + '_{}.json'.format(patent_info['ID']), 'w') as fp:
+    with open(file_name + 'patetn_info_{}.json'.format(patent_info['ID']), 'w') as fp:
         json.dump(patent_info, fp)
 
 
@@ -28,11 +28,11 @@ def Write_one_patent_to_csv(patent_info, file_name, file_open_mode='a'):
         return
 
     # Separate the information to 5 .csv files
-    fname_title = file_name + "_title_inventor.csv"
-    fname_ass = file_name + "_assignee.csv"
-    fname_US = file_name + "_US.csv"
-    fname_CPC = file_name + "_CPC.csv"
-    fname_International = file_name + "_International.csv"
+    fname_title = file_name + "patetn_info_title_inventor.csv"
+    fname_ass = file_name + "patetn_info_assignee.csv"
+    fname_US = file_name + "patetn_info_US.csv"
+    fname_CPC = file_name + "patetn_info_CPC.csv"
+    fname_International = file_name + "patetn_info_International.csv"
 
     with open(fname_title, file_open_mode, newline='') as file_title, \
         open(fname_ass, file_open_mode, newline='') as file_ass,\

@@ -104,6 +104,9 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang")
             else:
                 assignee_histogram[assignee['name']] = 1
 
+        if target_year == '1991':
+            print("asdf")
+
         # Originality
         if len(patent['reference'])!=0:
             this_patent_uspc_histogram = {'__init__': 0}
@@ -114,8 +117,8 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang")
                     else:
                         this_patent_uspc_histogram[uspc] = 1
             this_patent_uspc_histogram_value = np.array(list(this_patent_uspc_histogram.values()))
-            this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / (len(this_patent_uspc_histogram)-1)
-            total_originality += np.sum(this_patent_uspc_histogram_value**2) / len(patent['reference'])
+            this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / (len(patent['reference']))
+            total_originality += 1 - np.sum(this_patent_uspc_histogram_value**2) / len(patent['reference'])
 
         # Add all used USPC number into the list
         for uspc in patent['US']:
@@ -176,7 +179,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang")
 
 if __name__ == '__main__':
     ap = argparse.ArgumentParser()
-    ap.add_argument("-i", "--input", required=False, type=str, default='./output/',
+    ap.add_argument("-i", "--input", required=False, type=str, default='./output_Penang/',
                     help="directory to input .json files")
     ap.add_argument("-o", "--output", required=False, type=str, default='./index_result/',
                     help="directory to save calculated indexes")

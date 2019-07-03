@@ -120,6 +120,16 @@ Here a list for tag name used in .csv and .json file:
 
 Duplicate appearance of US class, CPC class, international class would only be shown once in the csv file.
 
+## Calculate index
+Specify the input foler, output folder, and target years of index calculation.
+```bash
+$ python calculate_index.py --input [folder of all input json files] --output [folder of output] --year [starting year] [ending_year]
+```
+For example.
+```bash
+$ python calculate_index.py -i ./output_Penang/ -o ./index_result/ -y 1970 2015
+```
+
 ## Warnings
 * Remember to close output .csv file before running the programm, or it can not access the output file.
 

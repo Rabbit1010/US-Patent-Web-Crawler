@@ -84,7 +84,8 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_ID = soup.title.string.split(' ')[-1]
     if Beautify_String(patent_ID) == "Collection":
         return None
-
+    elif Beautify_String(patent_ID) == "Error":
+        return None
     # Get Patent Name
     fonts = soup.findAll('font')
     for font in fonts:
@@ -222,7 +223,7 @@ def Get_Patent_Info_in_one_URL(url, simple=False):
     patent_US_Class = 'NONE'
     patent_CPC_Class = 'NONE'
     patent_International_Class = 'NONE'
-    for i in range(4,9):
+    for i in range(4,10):
         try:
             if Beautify_String(tables[i].findAll('td')[0].text) == 'Current U.S. Class:':
                 patent_US_Class = Beautify_String(tables[i].findAll('td')[1].text)
@@ -383,13 +384,17 @@ def main():
                     help="Mode, single or many")
     ap.add_argument("-i", "--input", required=False, default='./input_URL.txt',
                     help="Path to input .txt file")
-    ap.add_argument("-o", "--output", required=False, default='./output/patent_info',
+    ap.add_argument("-o", "--output", required=False, default='./output/',
                     help="Path to output .csv file")
     ap.add_argument("-w", "--warnings", required=False, default=True,
                     help="Show warning messages or not")
     ap.add_argument("-d", "--debug", required=False, default=False,
                     help="Show debug message or not")
     args = vars(ap.parse_args())
+
+    if os.path.isdir(args['output']) == False:
+        print("Folder {} does not exist, create one".format(args['output']))
+        os.mkdir(args['output'])
 
     global DEBUG
     if args['debug']=='True' or args['debug']=='true':
@@ -411,6 +416,7 @@ def main():
     # Testing
 #    args['mode'] = 'single'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=71&p=2&f=G&l=50&d=PTXT&S1=5339404&OS=5339404&RS=5339404'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=1&p=1&f=G&l=50&d=PTXT&S1=9918016.PN.&OS=PN/9918016&RS=PN/9918016'
 #    args['mode'] = 'many'
 #    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
 
@@ -434,7 +440,7 @@ def main():
         current_link = 0
 
         # Load checpoint
-        checkpoint_fname = './output/checkpoint.pkl'
+        checkpoint_fname = args['output'] + '/checkpoint.pkl'
         if os.path.isfile(checkpoint_fname): # Check if checkpoint exist
             print("[INFO] Checkpoint file exist, loading from checkpoint...")
             with open(checkpoint_fname, 'rb') as f:  # Python 3: open(..., 'rb')
