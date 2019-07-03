@@ -166,7 +166,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang")
     all_assignee_patent_count = list(assignee_histogram.values())
     all_assignee_patent_count.sort(reverse=True)
     all_assignee_patent_count = np.array(all_assignee_patent_count[0:5]) / total_patent_count_in_target_year
-    index_HHI = np.mean(all_assignee_patent_count**2)
+    index_HHI = np.sum(all_assignee_patent_count**2)
 #    with open('assignee_histogram.json', 'w') as fp:
 #        json.dump(assignee_histogram, fp)
 
