@@ -104,8 +104,8 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang")
             else:
                 assignee_histogram[assignee['name']] = 1
 
-        if target_year == '1991':
-            print("asdf")
+#        if target_year == '1991':
+#            print("asdf")
 
         # Originality
         if len(patent['reference'])!=0:
@@ -183,6 +183,8 @@ if __name__ == '__main__':
                     help="directory to input .json files")
     ap.add_argument("-o", "--output", required=False, type=str, default='./index_result/',
                     help="directory to save calculated indexes")
+    ap.add_argument("-r", "--region", required=False, type=str, default='Penang',
+                    help="Target region (case-sensitive!)")
     ap.add_argument("-y", "--year", nargs='+', type=int, default=[1970, 2015],
                     help='the starting year and ending year of index calculation')
     ARGS = ap.parse_args()
@@ -212,7 +214,7 @@ if __name__ == '__main__':
         index_localization, index_HHI, index_orginality, index_diversification, \
         index_cycle_time, index_collab_intra_regional, index_collab_inter_regional, \
         index_collab_international, assignee_histogram, total_patent_count_in_target_year\
-        = Calculate_Index(all_patent_info, str(i_year), "Penang")
+        = Calculate_Index(all_patent_info, str(i_year), ARGS.region)
 
         # append index to list
         year.append(i_year)
