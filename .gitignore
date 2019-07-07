@@ -4,6 +4,7 @@ TEMPORARY/
 index_result/
 output/
 output_Penang/
+output_Hsinchu/
 !output/.gitkeep
 
 # Byte-compiled / optimized / DLL files
