@@ -123,11 +123,11 @@ Duplicate appearance of US class, CPC class, international class would only be s
 ## Calculate index
 Specify the input foler, output folder, and target years of index calculation.
 ```bash
-$ python calculate_index.py --input [folder of all input json files] --output [folder of output] --region [target region] --year [starting year] [ending_year]
+$ python calculate_index.py --input [folder of all input json files] --output [folder of output] --region [target region] --year [starting year] [ending_year] --window 5
 ```
 For example.
 ```bash
-$ python calculate_index.py -i ./output_Penang/ -o ./index_result/ -r Penang -y 1970 2015
+$ python calculate_index.py -i ./output_Penang/ -o ./index_result/ -r Penang -y 1970 2015 -w 5
 ```
 Note that target region is case-sensitive (first letter should be capital).
 
