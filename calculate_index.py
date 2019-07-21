@@ -174,7 +174,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
             if counted_referenced_by != 0:
                 total_avg_cycle_time += this_patent_total_cycle_time/counted_referenced_by # /len(patent['referenced_by'])
             else:
-                total_avg_cycle_time = 0
+                total_avg_cycle_time += 0
 
         # Check collaboration
         if len(patent['inventors']) >= 2:
@@ -186,7 +186,6 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
                 total_international += 1
         else:
             total_intra_regional += 1
-
 
     # Calculate all the index
     try:
