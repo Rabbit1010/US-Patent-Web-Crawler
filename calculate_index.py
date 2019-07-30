@@ -73,9 +73,14 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
     assignee_histogram = {'__init__': 0}
 
     # Orginality
-    total_originality1 = 0
-    total_originality2 = 0
-    total_originality3 = 0
+    total_originality1_uspc = 0
+    total_originality2_uspc = 0
+    total_originality3_uspc = 0
+    total_originality4_uspc = 0
+    total_originality1_cpc = 0
+    total_originality2_cpc = 0
+    total_originality3_cpc = 0
+    total_originality4_cpc = 0
 
     # Diversification
     used_uspc_list = []
@@ -83,6 +88,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
 
     # Cycle time
     total_avg_cycle_time = 0
+    total_avg_cycle_time_backward = 0
 
     # Collabortaion
     total_intra_regional = 0
@@ -101,7 +107,8 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
 
         # Count reference that is in the same region
         for reference in patent['reference']:
-            if reference['inventors'][0]['city'] == target_region: # only check first inventor
+            if target_region in reference['inventors'][0]['city']:
+            #if reference['inventors'][0]['city'] == target_region: # only check first inventor
                 total_region_reference_itself_count += 1
 
         # Add all assignee into the histogram
@@ -111,7 +118,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
             else:
                 assignee_histogram[assignee['name']] = 1
 
-        # Originality1
+        # originality1_uspc
         if len(patent['reference'])!=0:
             this_patent_uspc_histogram = {'__init__': 0}
             for reference in patent['reference']:
@@ -122,9 +129,22 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
                         this_patent_uspc_histogram[uspc] = 1
             this_patent_uspc_histogram_value = np.array(list(this_patent_uspc_histogram.values()))
             this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / (len(patent['reference']))
-            total_originality1 += 1 - np.sum(this_patent_uspc_histogram_value**2) / len(patent['reference'])
+            total_originality1_uspc += 1 - np.sum(this_patent_uspc_histogram_value**2) / len(patent['reference'])
 
-        # Originality2
+        # originality1_cpc
+        if len(patent['reference'])!=0:
+            this_patent_cpc_histogram = {'__init__': 0}
+            for reference in patent['reference']:
+                for cpc in reference['CPC']:
+                    if cpc in this_patent_cpc_histogram:
+                       this_patent_cpc_histogram[cpc] = this_patent_cpc_histogram[cpc] + 1
+                    else:
+                        this_patent_cpc_histogram[cpc] = 1
+            this_patent_cpc_histogram_value = np.array(list(this_patent_cpc_histogram.values()))
+            this_patent_cpc_histogram_value = this_patent_cpc_histogram_value / (len(patent['reference']))
+            total_originality1_cpc += 1 - np.sum(this_patent_cpc_histogram_value**2) / len(patent['reference'])
+
+        # originality2_uspc
         if len(patent['reference'])!=0:
             this_patent_uspc_histogram = {'__init__': 0}
             for reference in patent['reference']:
@@ -135,9 +155,22 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
                         this_patent_uspc_histogram[uspc] = 1
             this_patent_uspc_histogram_value = np.array(list(this_patent_uspc_histogram.values()))
             this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / (len(patent['reference']))
-            total_originality2 += 1 - np.sum(this_patent_uspc_histogram_value**2)
+            total_originality2_uspc += 1 - np.sum(this_patent_uspc_histogram_value**2)
 
-        # Originality3
+        # originality2_cpc
+        if len(patent['reference'])!=0:
+            this_patent_cpc_histogram = {'__init__': 0}
+            for reference in patent['reference']:
+                for cpc in reference['CPC']:
+                    if cpc in this_patent_cpc_histogram:
+                       this_patent_cpc_histogram[cpc] = this_patent_cpc_histogram[cpc] + 1
+                    else:
+                        this_patent_cpc_histogram[cpc] = 1
+            this_patent_cpc_histogram_value = np.array(list(this_patent_cpc_histogram.values()))
+            this_patent_cpc_histogram_value = this_patent_cpc_histogram_value / (len(patent['reference']))
+            total_originality2_cpc += 1 - np.sum(this_patent_cpc_histogram_value**2)
+
+        # originality3_uspc
         if len(patent['reference'])!=0:
             this_patent_uspc_histogram = {'__init__': 0}
             for reference in patent['reference']:
@@ -148,8 +181,46 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
                         this_patent_uspc_histogram[uspc] = 1
             this_patent_uspc_histogram_value = np.array(list(this_patent_uspc_histogram.values()))
             this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / np.sum(this_patent_uspc_histogram_value)
-            total_originality3 += 1 - np.sum(this_patent_uspc_histogram_value**2)
+            total_originality3_uspc += 1 - np.sum(this_patent_uspc_histogram_value**2)
 
+        # originality3_cpc
+        if len(patent['reference'])!=0:
+            this_patent_cpc_histogram = {'__init__': 0}
+            for reference in patent['reference']:
+                for cpc in reference['CPC']:
+                    if cpc in this_patent_cpc_histogram:
+                       this_patent_cpc_histogram[cpc] = this_patent_cpc_histogram[cpc] + 1
+                    else:
+                        this_patent_cpc_histogram[cpc] = 1
+            this_patent_cpc_histogram_value = np.array(list(this_patent_cpc_histogram.values()))
+            this_patent_cpc_histogram_value = this_patent_cpc_histogram_value / np.sum(this_patent_cpc_histogram_value)
+            total_originality3_cpc += 1 - np.sum(this_patent_cpc_histogram_value**2)
+
+        # originality4_uspc
+        if len(patent['reference'])!=0:
+            this_patent_uspc_histogram = {'__init__': 0}
+            for reference in patent['reference']:
+                for uspc in reference['US'][0]:
+                    if uspc in this_patent_uspc_histogram:
+                       this_patent_uspc_histogram[uspc] = this_patent_uspc_histogram[uspc] + 1
+                    else:
+                        this_patent_uspc_histogram[uspc] = 1
+            this_patent_uspc_histogram_value = np.array(list(this_patent_uspc_histogram.values()))
+            this_patent_uspc_histogram_value = this_patent_uspc_histogram_value / np.sum(this_patent_uspc_histogram_value)
+            total_originality4_uspc += 1 - np.sum(this_patent_uspc_histogram_value**2)
+
+        # originality4_cpc
+        if len(patent['reference'])!=0:
+            this_patent_cpc_histogram = {'__init__': 0}
+            for reference in patent['reference']:
+                for cpc in reference['CPC'][0]:
+                    if cpc in this_patent_cpc_histogram:
+                       this_patent_cpc_histogram[cpc] = this_patent_cpc_histogram[cpc] + 1
+                    else:
+                        this_patent_cpc_histogram[cpc] = 1
+            this_patent_cpc_histogram_value = np.array(list(this_patent_cpc_histogram.values()))
+            this_patent_cpc_histogram_value = this_patent_cpc_histogram_value / np.sum(this_patent_cpc_histogram_value)
+            total_originality4_cpc += 1 - np.sum(this_patent_cpc_histogram_value**2)
 
         # Add all used USPC number into the list
         for uspc in patent['US']:
@@ -176,6 +247,21 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
             else:
                 total_avg_cycle_time += 0
 
+        # Add averaged cycle time from all past refernce patents
+        if len(patent['reference']) != 0:
+            this_patent_total_cycle_time = 0
+            counted_reference = 0
+            for reference_patent in patent['reference']:
+                temp = abs(Get_Year_Difference(target_year, reference_patent['date']))
+                if temp <= window_length: # the referenced_by patent is inside the window of cycle time
+                    this_patent_total_cycle_time += temp
+                    if temp!=0:
+                        counted_reference += 1
+            if counted_reference != 0:
+                total_avg_cycle_time_backward += this_patent_total_cycle_time/counted_reference # /len(patent['referenced_by'])
+            else:
+                total_avg_cycle_time_backward += 0
+
         # Check collaboration
         if len(patent['inventors']) >= 2:
             if patent['inventors'][0]['city'] == patent['inventors'][1]['city']: # check first two inventors
@@ -197,18 +283,30 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
     index_diversification_cpc = len(used_cpc_list) / CPC_COUNT
 
     if total_patent_count_in_target_year != 0: # avoid zero division
-        index_originality1 = total_originality1 / total_patent_count_in_target_year
-        index_originality2 = total_originality2 / total_patent_count_in_target_year
-        index_originality3 = total_originality3 / total_patent_count_in_target_year
+        index_originality1_uspc = total_originality1_uspc / total_patent_count_in_target_year
+        index_originality2_uspc = total_originality2_uspc / total_patent_count_in_target_year
+        index_originality3_uspc = total_originality3_uspc / total_patent_count_in_target_year
+        index_originality4_uspc = total_originality4_uspc / total_patent_count_in_target_year
+        index_originality1_cpc = total_originality1_cpc / total_patent_count_in_target_year
+        index_originality2_cpc = total_originality2_cpc / total_patent_count_in_target_year
+        index_originality3_cpc = total_originality3_cpc / total_patent_count_in_target_year
+        index_originality4_cpc = total_originality4_cpc / total_patent_count_in_target_year
         index_cycle_time = total_avg_cycle_time / total_patent_count_in_target_year
+        index_cycle_time_backward = total_avg_cycle_time_backward / total_patent_count_in_target_year
         index_collab_intra_regional = total_intra_regional / total_patent_count_in_target_year
         index_collab_inter_regional = total_inter_regional / total_patent_count_in_target_year
         index_collab_international = total_international / total_patent_count_in_target_year
     else:
-        index_originality1 = 0
-        index_originality2 = 0
-        index_originality3 = 0
+        index_originality1_uspc = 0
+        index_originality2_uspc = 0
+        index_originality3_uspc = 0
+        index_originality4_uspc = 0
+        index_originality1_cpc = 0
+        index_originality2_cpc = 0
+        index_originality3_cpc = 0
+        index_originality4_cpc = 0
         index_cycle_time = 0
+        index_cycle_time_backward = 0
         index_collab_intra_regional = 0
         index_collab_inter_regional = 0
         index_collab_international = 0
@@ -221,9 +319,10 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
 #    with open('assignee_histogram.json', 'w') as fp:
 #        json.dump(assignee_histogram, fp)
 
-    return index_localization, index_HHI, index_originality1, index_originality2, index_originality3, \
+    return index_localization, index_HHI, index_originality1_uspc, index_originality2_uspc, index_originality3_uspc, index_originality4_uspc,\
+            index_originality1_cpc, index_originality2_cpc, index_originality3_cpc, index_originality4_cpc,\
             index_diversification_uspc, index_diversification_cpc, \
-            index_cycle_time, index_collab_intra_regional, index_collab_inter_regional, \
+            index_cycle_time, index_cycle_time_backward, index_collab_intra_regional, index_collab_inter_regional, \
             index_collab_international, assignee_histogram, total_patent_count_in_target_year
 
 if __name__ == '__main__':
@@ -236,7 +335,7 @@ if __name__ == '__main__':
                     help="Target region (case-sensitive!)")
     ap.add_argument("-y", "--year", nargs='+', type=int, default=[1970, 2015],
                     help='the starting year and ending year of index calculation')
-    ap.add_argument("-w", "--window", type=int, default=5,
+    ap.add_argument("-w", "--window", type=int, default=3,
                     help='window length (in year) to calculate cycle time index')
     ARGS = ap.parse_args()
 
@@ -252,12 +351,18 @@ if __name__ == '__main__':
     patent_count = []
     localization = []
     HHI = []
-    orginality1 = []
-    orginality2 = []
-    orginality3 = []
+    orginality1_uspc = []
+    orginality2_uspc = []
+    orginality3_uspc = []
+    orginality4_uspc = []
+    orginality1_cpc = []
+    orginality2_cpc = []
+    orginality3_cpc = []
+    orginality4_cpc = []
     diversification_uspc = []
     diversification_cpc = []
     cycle_time = []
+    cycle_time_backward = []
     intra_collab = []
     inter_collab = []
     international_collab = []
@@ -265,9 +370,10 @@ if __name__ == '__main__':
     print("Would start calculate indexes from {} to {}".format(ARGS.year[0], ARGS.year[1]))
     input("Press Enter to continue...")
     for i_year in range(ARGS.year[0], ARGS.year[1]+1):
-        index_localization, index_HHI, index_originality1, index_originality2, index_originality3, \
+        index_localization, index_HHI, index_originality1_uspc, index_originality2_uspc, index_originality3_uspc, index_originality4_uspc,\
+        index_originality1_cpc, index_originality2_cpc, index_originality3_cpc, index_originality4_cpc,\
         index_diversification_uspc, index_diversification_cpc, \
-        index_cycle_time, index_collab_intra_regional, index_collab_inter_regional, \
+        index_cycle_time, index_cycle_time_backward, index_collab_intra_regional, index_collab_inter_regional, \
         index_collab_international, assignee_histogram, total_patent_count_in_target_year\
         = Calculate_Index(all_patent_info, str(i_year), ARGS.region, ARGS.window)
 
@@ -276,12 +382,18 @@ if __name__ == '__main__':
         patent_count.append(total_patent_count_in_target_year)
         localization.append(index_localization)
         HHI.append(index_HHI)
-        orginality1.append(index_originality1)
-        orginality2.append(index_originality2)
-        orginality3.append(index_originality3)
+        orginality1_uspc.append(index_originality1_uspc)
+        orginality2_uspc.append(index_originality2_uspc)
+        orginality3_uspc.append(index_originality3_uspc)
+        orginality4_uspc.append(index_originality4_uspc)
+        orginality1_cpc.append(index_originality1_cpc)
+        orginality2_cpc.append(index_originality2_cpc)
+        orginality3_cpc.append(index_originality3_cpc)
+        orginality4_cpc.append(index_originality4_cpc)
         diversification_uspc.append(index_diversification_uspc)
         diversification_cpc.append(index_diversification_cpc)
         cycle_time.append(index_cycle_time)
+        cycle_time_backward.append(index_cycle_time_backward)
         intra_collab.append(index_collab_intra_regional)
         inter_collab.append(index_collab_inter_regional)
         international_collab.append(index_collab_international)
@@ -292,12 +404,18 @@ if __name__ == '__main__':
             'patent_count': patent_count,
             'localization': localization,
             'HHI': HHI,
-            'orginality1': orginality1,
-            'orginality2': orginality2,
-            'orginality3': orginality3,
+            'orginality1_uspc': orginality1_uspc,
+            'orginality2_uspc': orginality2_uspc,
+            'orginality3_uspc': orginality3_uspc,
+            'orginality4_uspc': orginality4_uspc,
+            'orginality1_cpc': orginality1_cpc,
+            'orginality2_cpc': orginality2_cpc,
+            'orginality3_cpc': orginality3_cpc,
+            'orginality4_cpc': orginality4_cpc,
             'diversification_uspc': diversification_uspc,
             'diversification_cpc': diversification_cpc,
             'cycle_time': cycle_time,
+            'cycle_time_backward': cycle_time_backward,
             'intra_regional_collaboration': intra_collab,
             'inter_regional_collaboration': inter_collab,
             'international_collaboration': international_collab
