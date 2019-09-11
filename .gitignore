@@ -1,6 +1,7 @@
 *.zip
 *.pptx
 *.docx
+input*.txt
 TEMPORARY/
 index_result/
 output/

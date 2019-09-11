@@ -393,7 +393,7 @@ def main():
     args = vars(ap.parse_args())
 
     if os.path.isdir(args['output']) == False:
-        print("Folder {} does not exist, create one".format(args['output']))
+        print("[INFO] Folder {} does not exist, create one".format(args['output']))
         os.mkdir(args['output'])
 
     global DEBUG
@@ -404,6 +404,15 @@ def main():
     if args['warnings']=='False' or args['warnings']=='false':
         WARNINGS = False
 
+    # Testing
+#    args['mode'] = 'single'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=71&p=2&f=G&l=50&d=PTXT&S1=5339404&OS=5339404&RS=5339404'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=18&f=G&l=50&d=PTXT&p=1&S1=6140198&OS=6140198&RS=6140198'
+#    args['mode'] = 'many'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
+#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&p=1&f=S&l=50&Query=IC%2FSeoul+AND+APT%2F1+AND+ISD%2F20150101-%3E20161231&d=PTXT'
+#    print(URL_in)
+
     # Read input URL
     if not os.path.isfile(args['input']): # check if output file already exist
         print("[ERROR] Input file {} does not exist.".format(args['input']))
@@ -412,13 +421,6 @@ def main():
         print("[INFO] Read input file : {}".format(args['input']))
         URL_in = f.readline()
         print("[INFO] Read input URL : {}".format(URL_in))
-
-    # Testing
-#    args['mode'] = 'single'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=71&p=2&f=G&l=50&d=PTXT&S1=5339404&OS=5339404&RS=5339404'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=18&f=G&l=50&d=PTXT&p=1&S1=6140198&OS=6140198&RS=6140198'
-#    args['mode'] = 'many'
-#    URL_in = 'http://patft.uspto.gov/netacgi/nph-Parser?Sect1=PTO2&Sect2=HITOFF&u=%2Fnetahtml%2FPTO%2Fsearch-adv.htm&r=0&f=S&l=50&d=PTXT&RS=%28%28IC%2FPenang+AND+APT%2F1%29+AND+ISD%2F20180501-%3E20180631%29&Refine=Refine+Search&Query=9964563'
 
     # Single mode
     if args['mode'] == 'single':
@@ -432,8 +434,20 @@ def main():
     if args['mode'] == 'many':
         if os.path.isfile(args['output'] + "_title_inventor.csv"): # check if output file already exist
             print("[WARNING] Output file {} already exist, will overwrite it.".format(args['output'] + "_title_inventor.csv"))
-        print("[INFO] Getting the links to all patents")
-        _, all_links = Get_Patent_Info_by_First_Page(first_url=URL_in)
+
+        # Get the links to all patents
+        checkpoint_all_links_fname = args['output'] + '/checkpoint_all_links.pkl'
+        if os.path.isfile(checkpoint_all_links_fname):
+            print("[INFO] Checkpoint for all links exist, loading from checkpoint files...")
+            with open(checkpoint_all_links_fname, 'rb') as f:
+                all_links = pickle.load(f)
+        else:
+            print("[INFO] Getting the links to all patents...")
+            _, all_links = Get_Patent_Info_by_First_Page(first_url=URL_in)
+            # Save all links to checkpoint
+            print("[INFO] Saving the links to all patents to checkpoint file")
+            with open(checkpoint_all_links_fname, 'wb') as f:
+                pickle.dump(all_links, f)
 
         # link information and initiailize checkpoint file
         total_link = len(all_links)
