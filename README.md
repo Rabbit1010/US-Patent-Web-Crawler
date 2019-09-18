@@ -123,17 +123,19 @@ Duplicate appearance of US class, CPC class, international class would only be s
 ## Calculate index
 Specify the input foler, output folder, and target years of index calculation.
 ```bash
-$ python calculate_index.py --input [folder of all input json files] --output [folder of output] --region [target region] --year [starting year] [ending_year] --window 5
+$ python calculate_index.py --input [folder of all input json files] --output [folder of output] --region [LIST of target regions] --year [starting year] [ending_year] --window [List of window lengths] --city_of_collaboration [LIST of cities of collaboration]
 ```
 For example.
 ```bash
-$ python calculate_index.py -i ./output_Penang/ -o ./index_result/ -r Penang -y 1970 2015 -w 5
+$ python calculate_index.py -i ./output_Penang/ -o ./index_result/ -r Penang Pen-nang -y 1970 2015 -w 5 3 -cc Penang Pen-nang
 ```
-Note that target region is case-sensitive (first letter should be capital).
+Note that the names of the cities is case-sensitive (first letter should be capital).
+
+If city_of_collaboration is not set, then all cities are acceptable. 
 
 
 ## Warnings
-* Remember to close output .csv file before running the programm, or it can not access the output file.
+* Remember to close output .csv file before running the program, or it can not access the output file.
 
 * Some time some particular patents might not have particular information, the program would give warning messages and the program would continue. if you want to suppress all warning messages, you can use:
   ```bash

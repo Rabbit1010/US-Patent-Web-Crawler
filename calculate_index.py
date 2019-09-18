@@ -57,9 +57,9 @@ def Read_All_Patent_Data(in_dir='./output/'):
 
     return all_patent_info
 
-def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang", window_length=5):
+def Calculate_Index(all_patent_info, target_year="2011", target_region=['Penang', 'penang'], window_length=[3,5], city_of_collaboration=[]):
     assert type(target_year) == str
-    assert type(target_region) == str
+#    assert type(target_region) == str
 
     USPC_COUNT = 472 # total number of all USPC available in the patent database
     CPC_COUNT = 664 # total number of all CPC available in the patent database
@@ -96,7 +96,9 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
     total_international = 0
 
     # Loop through all patents
-    print("Calculate index for year: {}, region: {}".format(target_year, target_region))
+#    print("Calculate index for year: {}, region: {}, window length: {}".format(target_year, target_region, window_length))
+    print("Calculate index for year: {}".format(target_year))
+
 #    for patent in tqdm(all_patent_info):
     for patent in all_patent_info:
         if target_year not in patent['date']: # ignore patents that are not in the given year
@@ -107,9 +109,14 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
 
         # Count reference that is in the same region
         for reference in patent['reference']:
-            if target_region in reference['inventors'][0]['city']:
+            for i_region in target_region:
+                if i_region in reference['inventors'][0]['city']:
+                    total_region_reference_itself_count += 1
+                    break
+
+#            if target_region in reference['inventors'][0]['city']:
             #if reference['inventors'][0]['city'] == target_region: # only check first inventor
-                total_region_reference_itself_count += 1
+#                total_region_reference_itself_count += 1
 
         # Add all assignee into the histogram
         for assignee in patent['assignee']:
@@ -233,45 +240,67 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
                 used_cpc_list.append(cpc)
 
         # Add averaged cycle time from all future referenced by patents
-        if len(patent['referenced_by']) != 0:
-            this_patent_total_cycle_time = 0
-            counted_referenced_by = 0
-            for referenced_by_patent in patent['referenced_by']:
-                temp = Get_Year_Difference(target_year, referenced_by_patent['date'])
-                if temp <= window_length: # the referenced_by patent is inside the window of cycle time
-                    this_patent_total_cycle_time += temp
-                    if temp!=0:
-                        counted_referenced_by += 1
-            if counted_referenced_by != 0:
-                total_avg_cycle_time += this_patent_total_cycle_time/counted_referenced_by # /len(patent['referenced_by'])
-            else:
-                total_avg_cycle_time += 0
+        total_avg_cycle_time_list = []
+        for i_window_length in window_length:
+            total_avg_cycle_time = 0
+            if len(patent['referenced_by']) != 0:
+                this_patent_total_cycle_time = 0
+                counted_referenced_by = 0
+                for referenced_by_patent in patent['referenced_by']:
+                    temp = Get_Year_Difference(target_year, referenced_by_patent['date'])
+                    if temp <= i_window_length: # the referenced_by patent is inside the window of cycle time
+                        this_patent_total_cycle_time += temp
+                        if temp!=0:
+                            counted_referenced_by += 1
+                if counted_referenced_by != 0:
+                    total_avg_cycle_time += this_patent_total_cycle_time/counted_referenced_by # /len(patent['referenced_by'])
+                else:
+                    total_avg_cycle_time += 0
+            total_avg_cycle_time_list.append(total_avg_cycle_time)
 
         # Add averaged cycle time from all past refernce patents
-        if len(patent['reference']) != 0:
-            this_patent_total_cycle_time = 0
-            counted_reference = 0
-            for reference_patent in patent['reference']:
-                temp = abs(Get_Year_Difference(target_year, reference_patent['date']))
-                if temp <= window_length: # the referenced_by patent is inside the window of cycle time
-                    this_patent_total_cycle_time += temp
-                    if temp!=0:
-                        counted_reference += 1
-            if counted_reference != 0:
-                total_avg_cycle_time_backward += this_patent_total_cycle_time/counted_reference # /len(patent['referenced_by'])
-            else:
-                total_avg_cycle_time_backward += 0
+        total_avg_cycle_time_backward_list = []
+        for i_window_length_legnth in window_length:
+            total_avg_cycle_time_backward = 0
+            if len(patent['reference']) != 0:
+                this_patent_total_cycle_time_backward = 0
+                counted_reference = 0
+                for reference_patent in patent['reference']:
+                    temp = abs(Get_Year_Difference(target_year, reference_patent['date']))
+                    if temp <= i_window_length: # the referenced_by patent is inside the window of cycle time
+                        this_patent_total_cycle_time_backward += temp
+                        if temp!=0:
+                            counted_reference += 1
+                if counted_reference != 0:
+                    total_avg_cycle_time_backward += this_patent_total_cycle_time_backward/counted_reference # /len(patent['referenced_by'])
+                else:
+                    total_avg_cycle_time_backward += 0
+            total_avg_cycle_time_backward_list.append(total_avg_cycle_time_backward)
 
         # Check collaboration
-        if len(patent['inventors']) >= 2:
-            if patent['inventors'][0]['city'] == patent['inventors'][1]['city']: # check first two inventors
-                total_intra_regional += 1
-            elif patent['inventors'][0]['country'] == patent['inventors'][1]['country']:
-                total_inter_regional += 1
+        if len(city_of_collaboration) == 0: # if any city is acceptable
+            if len(patent['inventors']) >= 2:
+                if patent['inventors'][0]['city'] == patent['inventors'][1]['city']: # check first two inventors
+                    total_intra_regional += 1
+                elif patent['inventors'][0]['country'] == patent['inventors'][1]['country']: # check first two countries
+                    total_inter_regional += 1
+                else:
+                    total_international += 1
             else:
-                total_international += 1
+                total_intra_regional += 1
         else:
-            total_intra_regional += 1
+            for i_city in city_of_collaboration:
+                if patent['inventors'][0]['city'] == i_city: # if the 1st inventor is in the setted city
+                    if len(patent['inventors']) >= 2:
+                        if patent['inventors'][0]['city'] == patent['inventors'][1]['city']: # check first two inventors
+                            total_intra_regional += 1
+                        elif patent['inventors'][0]['country'] == patent['inventors'][1]['country']: # check first two countries
+                            total_inter_regional += 1
+                        else:
+                            total_international += 1
+                    else:
+                        total_intra_regional += 1
+                break
 
     # Calculate all the index
     try:
@@ -291,8 +320,9 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
         index_originality2_cpc = total_originality2_cpc / total_patent_count_in_target_year
         index_originality3_cpc = total_originality3_cpc / total_patent_count_in_target_year
         index_originality4_cpc = total_originality4_cpc / total_patent_count_in_target_year
-        index_cycle_time = total_avg_cycle_time / total_patent_count_in_target_year
-        index_cycle_time_backward = total_avg_cycle_time_backward / total_patent_count_in_target_year
+#        print(total_avg_cycle_time_list)
+        index_cycle_time = list(np.array(total_avg_cycle_time_list, dtype='float') / total_patent_count_in_target_year)
+        index_cycle_time_backward = list(np.array(total_avg_cycle_time_backward_list, dtype='float') / total_patent_count_in_target_year)
         index_collab_intra_regional = total_intra_regional / total_patent_count_in_target_year
         index_collab_inter_regional = total_inter_regional / total_patent_count_in_target_year
         index_collab_international = total_international / total_patent_count_in_target_year
@@ -305,17 +335,20 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region="Penang",
         index_originality2_cpc = 0
         index_originality3_cpc = 0
         index_originality4_cpc = 0
-        index_cycle_time = 0
-        index_cycle_time_backward = 0
+        index_cycle_time = list(np.zeros(len(window_length)))
+        index_cycle_time_backward = list(np.zeros(len(window_length)))
         index_collab_intra_regional = 0
         index_collab_inter_regional = 0
         index_collab_international = 0
 
     # HHI
-    all_assignee_patent_count = list(assignee_histogram.values())
-    all_assignee_patent_count.sort(reverse=True)
-    all_assignee_patent_count = np.array(all_assignee_patent_count[0:5]) / total_patent_count_in_target_year
-    index_HHI = np.sum(all_assignee_patent_count**2)
+    if total_patent_count_in_target_year != 0:
+        all_assignee_patent_count = list(assignee_histogram.values())
+        all_assignee_patent_count.sort(reverse=True)
+        all_assignee_patent_count = np.array(all_assignee_patent_count[0:5]) / total_patent_count_in_target_year
+        index_HHI = np.sum(all_assignee_patent_count**2)
+    else:
+        index_HHI = 0
 #    with open('assignee_histogram.json', 'w') as fp:
 #        json.dump(assignee_histogram, fp)
 
@@ -331,12 +364,14 @@ if __name__ == '__main__':
                     help="directory to input .json files")
     ap.add_argument("-o", "--output", required=False, type=str, default='./index_result/',
                     help="directory to save calculated indexes")
-    ap.add_argument("-r", "--region", required=False, type=str, default='Penang',
+    ap.add_argument("-r", "--region", nargs='+', required=False, type=str, default=['Penang', 'penang'],
                     help="Target region (case-sensitive!)")
     ap.add_argument("-y", "--year", nargs='+', type=int, default=[1970, 2015],
                     help='the starting year and ending year of index calculation')
-    ap.add_argument("-w", "--window", type=int, default=3,
+    ap.add_argument("-w", "--window", nargs='+',  type=int, default=[3, 1],
                     help='window length (in year) to calculate cycle time index')
+    ap.add_argument("-cc", "--city_of_collaboration", nargs='+',  type=str, default=[],
+                    help='Switch for collaboration index, if not setted then any city is acceptable')
     ARGS = ap.parse_args()
 
     if os.path.isdir(ARGS.output) == False:
@@ -367,7 +402,12 @@ if __name__ == '__main__':
     inter_collab = []
     international_collab = []
 
-    print("Would start calculate indexes from {} to {}".format(ARGS.year[0], ARGS.year[1]))
+    print("Would start calculate indexes from {} to {}, region: {}, window_legnth: {}".format(ARGS.year[0], ARGS.year[1], ARGS.region, ARGS.window))
+    if len(ARGS.city_of_collaboration) != 0:
+        print("City of collaboration is setted to {}".format(ARGS.city_of_collaboration))
+    else:
+        print("City of collaboration is not setted, so any city is acceptable")
+
     input("Press Enter to continue...")
     for i_year in range(ARGS.year[0], ARGS.year[1]+1):
         index_localization, index_HHI, index_originality1_uspc, index_originality2_uspc, index_originality3_uspc, index_originality4_uspc,\
@@ -375,7 +415,7 @@ if __name__ == '__main__':
         index_diversification_uspc, index_diversification_cpc, \
         index_cycle_time, index_cycle_time_backward, index_collab_intra_regional, index_collab_inter_regional, \
         index_collab_international, assignee_histogram, total_patent_count_in_target_year\
-        = Calculate_Index(all_patent_info, str(i_year), ARGS.region, ARGS.window)
+        = Calculate_Index(all_patent_info, str(i_year), ARGS.region, ARGS.window, ARGS.city_of_collaboration)
 
         # append index to list
         year.append(i_year)
@@ -414,12 +454,29 @@ if __name__ == '__main__':
             'orginality4_cpc': orginality4_cpc,
             'diversification_uspc': diversification_uspc,
             'diversification_cpc': diversification_cpc,
-            'cycle_time': cycle_time,
-            'cycle_time_backward': cycle_time_backward,
-            'intra_regional_collaboration': intra_collab,
-            'inter_regional_collaboration': inter_collab,
-            'international_collaboration': international_collab
+#            'cycle_time': cycle_time,
+#            'cycle_time_backward': cycle_time_backward,
+            'intra_regional_collaboration_{}'.format(ARGS.city_of_collaboration): intra_collab,
+            'inter_regional_collaboration_{}'.format(ARGS.city_of_collaboration): inter_collab,
+            'international_collaboration_{}.format(ARGS.city_of_collaboration)': international_collab
             }
+
+    # List of cycle time with different window length
+    for i in range(len(ARGS.window)):
+        this_window_cycle_time = []
+        for i_year in range(len(cycle_time)):
+            this_window_cycle_time.append(cycle_time[i_year][i])
+        index_dict['cycle_time_{}'.format(ARGS.window[i])] = this_window_cycle_time
+
+    # List of cycle time backward with different window length
+    for i in range(len(ARGS.window)):
+        this_window_cycle_time_backward = []
+        for i_year in range(len(cycle_time_backward)):
+            this_window_cycle_time_backward.append(cycle_time_backward[i_year][i])
+        index_dict['cycle_time_backward_{}'.format(ARGS.window[i])] = this_window_cycle_time_backward
+
+#    for i in range(len(ARGS.window)):
+#        index_dict['cycle_time_backward_{}'.format(ARGS.window[i])] = cycle_time_backward[i]
 
     index_df = pd.DataFrame(index_dict)
     print("Store calculated index result to {}".format(output_csv_path))
