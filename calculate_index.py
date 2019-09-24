@@ -88,7 +88,9 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region=['Penang'
 
     # Cycle time
     total_avg_cycle_time = 0
+    total_avg_cycle_time_list = np.zeros(len(window_length))
     total_avg_cycle_time_backward = 0
+    total_avg_cycle_time_backward_list = np.zeros(len(window_length))
 
     # Collabortaion
     total_intra_regional = 0
@@ -240,8 +242,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region=['Penang'
                 used_cpc_list.append(cpc)
 
         # Add averaged cycle time from all future referenced by patents
-        total_avg_cycle_time_list = []
-        for i_window_length in window_length:
+        for i_index, i_window_length in enumerate(window_length):
             total_avg_cycle_time = 0
             if len(patent['referenced_by']) != 0:
                 this_patent_total_cycle_time = 0
@@ -256,11 +257,10 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region=['Penang'
                     total_avg_cycle_time += this_patent_total_cycle_time/counted_referenced_by # /len(patent['referenced_by'])
                 else:
                     total_avg_cycle_time += 0
-            total_avg_cycle_time_list.append(total_avg_cycle_time)
+            total_avg_cycle_time_list[i_index] += total_avg_cycle_time
 
         # Add averaged cycle time from all past refernce patents
-        total_avg_cycle_time_backward_list = []
-        for i_window_length_legnth in window_length:
+        for i_index, i_window_length in enumerate(window_length):
             total_avg_cycle_time_backward = 0
             if len(patent['reference']) != 0:
                 this_patent_total_cycle_time_backward = 0
@@ -275,7 +275,7 @@ def Calculate_Index(all_patent_info, target_year="2011", target_region=['Penang'
                     total_avg_cycle_time_backward += this_patent_total_cycle_time_backward/counted_reference # /len(patent['referenced_by'])
                 else:
                     total_avg_cycle_time_backward += 0
-            total_avg_cycle_time_backward_list.append(total_avg_cycle_time_backward)
+            total_avg_cycle_time_backward_list[i_index] += total_avg_cycle_time_backward
 
         # Check collaboration
         if len(city_of_collaboration) == 0: # if any city is acceptable
